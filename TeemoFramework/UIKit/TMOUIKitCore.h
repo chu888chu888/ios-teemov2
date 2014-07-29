@@ -13,9 +13,11 @@
 #import "UIView+TMOView.h"
 #import "UIImageView+TMOImageView.h"
 #import "UIView+TMOSmarty.h"
-#import "NIAttributedLabel+TagString.h"
 #import "UIButton+TMOButton.h"
 #import <TMOTableView.h>
+#if __IPHONE_OS_VERSION_MIN_REQUIRED >= __IPHONE_6_0
+#import "NIAttributedLabel+TagString.h"
+#endif
 
 /**
  *  请勿初始化此对象

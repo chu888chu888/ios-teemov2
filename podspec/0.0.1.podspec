@@ -29,11 +29,17 @@ Pod::Spec.new do |s|
   s.dependency "gtm-http-fetcher", "~> 1.0.129"
   s.dependency "Reachability", "~> 3.1.1"
   s.dependency "MBProgressHUD", "~> 0.8"
-  s.dependency "FMDB", "~> 2.2"
   s.dependency "Objective-LevelDB", "~> 2.0.6"
   s.dependency "NimbusKit-AttributedLabel", "~> 1.0.0"
   s.dependency "RNCryptor", "~> 2.2"
   s.dependency "SSKeychain"
   s.dependency "TMOTableView"
+  
+  
+  s.subspec 'TMOFMDB' do |TMOFMDB|
+    TMOFMDB.source_files = "TeemoSubmodule/TMOFMDB/*.{h,m}";
+    TMOFMDB.dependency "FMDB", "~> 2.2"
+  end
+
 
 end
