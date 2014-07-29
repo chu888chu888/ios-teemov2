@@ -34,5 +34,6 @@ Pod::Spec.new do |s|
   s.dependency "NimbusKit-AttributedLabel", "~> 1.0.0"
   s.dependency "RNCryptor", "~> 2.2"
   s.dependency "SSKeychain"
+  s.dependency "TMOTableView"
 
 end
