@@ -241,14 +241,18 @@ completeUploadBlock:(void (^)(TMOHTTPResult *result, NSError *error))argBlock {
 - (GTMHTTPFetcher *)getCustomFetcherWithURL:(NSString *)argURL {
     NSURLRequest *request = [[NSURLRequest alloc] initWithURL:[NSURL URLWithString:argURL]];
     GTMHTTPFetcher *fetcher = [_fetcherService fetcherWithRequest:request];
+#if __IPHONE_OS_VERSION_MIN_REQUIRED >= __IPHONE_6_0
     [fetcher setDelegateQueue:_globalQueue];
+#endif
     return fetcher;
 }
 
 - (GTMHTTPFetcher *)getDownloadFetcherWithURL:(NSString *)argURL {
     NSURLRequest *request = [[NSURLRequest alloc] initWithURL:[NSURL URLWithString:argURL]];
     GTMHTTPFetcher *fetcher = [_downloadService fetcherWithRequest:request];
+#if __IPHONE_OS_VERSION_MIN_REQUIRED >= __IPHONE_6_0
     [fetcher setDelegateQueue:_globalQueue];
+#endif
     return fetcher;
 }
 
