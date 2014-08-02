@@ -7,7 +7,7 @@
 //
 
 #import "TMOSmartyMoreViewController.h"
-#import "TMOUIKitCore.h"
+#import "TMOSmarty.h"
 
 @interface TMOSmartyMoreViewController ()
 
@@ -20,6 +20,7 @@
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         self.title = @"Smarty全示例";
+        [TMOSmarty initialize];
         // Custom initialization
     }
     return self;
@@ -30,7 +31,7 @@
     [super viewDidLoad];
     
     NSDictionary *data = @{@"answer": @"呵呵呵呵呵呵呵呵呵呵呵呵呵呵呵呵呵呵呵呵呵呵呵呵呵呵呵呵呵呵呵呵呵呵呵呵呵呵呵呵呵呵呵呵呵呵呵呵呵呵呵呵呵呵呵呵呵呵", @"Q": @"文字", @"picture": @"http://huanju.cn/s/v1206/pic-banner01.jpg"};
-    [self.view smartyRendWithDictionary:data isRecursive:YES];
+    [self.view smartyRendWithObject:data isRecursive:YES];
     // Do any additional setup after loading the view from its nib.
 }
 

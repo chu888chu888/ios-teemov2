@@ -9,6 +9,7 @@
 #import "TMOSmartyViewController.h"
 #import "TMOHTTPManager.h"
 #import "TMOUIKitCore.h"
+#import "TMOSmarty.h"
 
 @class SmartyTestObject, SmartyTestObjectItem;
 
@@ -44,6 +45,7 @@
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         self.title = @"Smarty";
+        [TMOSmarty initialize];
         // Custom initialization
     }
     return self;

@@ -12,7 +12,6 @@
 #import "UIImage+TMOImage.h"
 #import "UIView+TMOView.h"
 #import "UIImageView+TMOImageView.h"
-#import "UIView+TMOSmarty.h"
 #import "UIButton+TMOButton.h"
 #import <TMOTableView.h>
 #if __IPHONE_OS_VERSION_MIN_REQUIRED >= __IPHONE_6_0
