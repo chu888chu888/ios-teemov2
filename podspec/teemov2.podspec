@@ -36,14 +36,13 @@ Pod::Spec.new do |s|
   s.dependency "TMOTableView"
   
   
-  s.subspec 'TMOFMDB' do |TMOFMDB|
-    TMOFMDB.source_files = "TeemoSubmodule/TMOFMDB/*.{h,m}";
-    TMOFMDB.dependency "FMDB", "~> 2.2"
+  s.subspec 'TMOFMDB' do |sub1|
+    sub1.source_files = "TeemoSubmodule/TMOFMDB/*.{h,m}";
+    sub1.dependency "FMDB", "~> 2.2"
   end
   
-  s.subspec 'TMOSmarty' do |TMOSmarty|
-    TMOSmarty.source_files = "TeemoSubmodule/TMOSmarty/*.{h,m}";
-    TMOSmarty.dependency "teemov2"
+  s.subspec 'TMOSmarty' do |sub2|
+    sub2.source_files = "TeemoSubmodule/TMOSmarty/*.{h,m}","TeemoFramework", "TeemoFramework/**/*.{h,m}";
   end
 
 
