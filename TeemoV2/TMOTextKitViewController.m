@@ -9,6 +9,8 @@
 #import "TMOTextKitViewController.h"
 #import "TMOUIKitCore.h"
 
+#if __IPHONE_OS_VERSION_MIN_REQUIRED >= __IPHONE_6_0
+
 @interface TMOTextKitViewController ()<NIAttributedLabelDelegate>
 @property (weak, nonatomic) IBOutlet NIAttributedLabel *label;
 
@@ -66,3 +68,11 @@
 }
 
 @end
+
+#else
+
+@implementation TMOTextKitViewController
+
+@end
+
+#endif

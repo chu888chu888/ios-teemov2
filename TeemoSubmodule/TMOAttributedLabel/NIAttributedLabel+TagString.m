@@ -6,6 +6,8 @@
 //  Copyright (c) 2014年 NimbusKit. All rights reserved.
 //
 
+#if __IPHONE_OS_VERSION_MIN_REQUIRED >= __IPHONE_6_0
+
 static NSMutableDictionary *styleDictionary;
 
 #import "NIAttributedLabel+TagString.h"
@@ -413,3 +415,4 @@ void TTTRunDelegateDeallocCalllback(void *refCon) {
 
 @end
 
+#endif

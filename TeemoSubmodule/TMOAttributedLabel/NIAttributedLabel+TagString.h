@@ -6,6 +6,9 @@
 //  Copyright (c) 2014年 NimbusKit. All rights reserved.
 //
 
+
+#if __IPHONE_OS_VERSION_MIN_REQUIRED >= __IPHONE_6_0
+
 #import <NIAttributedLabel.h>
 
 /**
@@ -145,3 +148,6 @@ typedef void (^TTTagBlock)(TTTagItem *tagItem, NSMutableAttributedString *theStr
                                  range:(NSRange)range;
 
 @end
+
+
+#endif

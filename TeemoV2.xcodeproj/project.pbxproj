@@ -72,15 +72,13 @@
 		922F60A3193490DB005AD787 /* UIImageView+TMOImageView.m in CopyFiles */ = {isa = PBXBuildFile; fileRef = 92BAE07E18F3F1B900C941D0 /* UIImageView+TMOImageView.m */; };
 		922F60A9193490F8005AD787 /* TModel.php in Resources */ = {isa = PBXBuildFile; fileRef = 922F60A8193490F8005AD787 /* TModel.php */; };
 		922F60AA19349104005AD787 /* TModel.php in CopyFiles */ = {isa = PBXBuildFile; fileRef = 922F60A8193490F8005AD787 /* TModel.php */; };
+		92493E27198F57CF00DF07D1 /* NIAttributedLabel+TagString.m in Sources */ = {isa = PBXBuildFile; fileRef = 92493E26198F57CF00DF07D1 /* NIAttributedLabel+TagString.m */; };
 		927AD2CF18FFBC7600498AD0 /* TMOFMDBTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 927AD2CE18FFBC7600498AD0 /* TMOFMDBTests.m */; };
 		927C8012194FF23F004DD8BC /* TMOTableDataViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 927C8010194FF23F004DD8BC /* TMOTableDataViewController.m */; };
 		927C8013194FF23F004DD8BC /* TMOTableDataViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 927C8011194FF23F004DD8BC /* TMOTableDataViewController.xib */; };
-		92ABB0AA1941915700FC40CB /* NIAttributedLabel+TagString.m in Sources */ = {isa = PBXBuildFile; fileRef = 92ABB0A81941915700FC40CB /* NIAttributedLabel+TagString.m */; };
 		92BAE07F18F3F1B900C941D0 /* UIImageView+TMOImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 92BAE07E18F3F1B900C941D0 /* UIImageView+TMOImageView.m */; };
 		92BFF83F18F638E700A13FD8 /* NSString+TMOString.m in Sources */ = {isa = PBXBuildFile; fileRef = 92BFF83E18F638E700A13FD8 /* NSString+TMOString.m */; };
 		92C13F801946D03900F6566A /* UIButton+TMOButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 92C13F7F1946D03900F6566A /* UIButton+TMOButton.m */; };
-		92C13F811946D58200F6566A /* NIAttributedLabel+TagString.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 92ABB0A91941915700FC40CB /* NIAttributedLabel+TagString.h */; };
-		92C13F821946D58200F6566A /* NIAttributedLabel+TagString.m in CopyFiles */ = {isa = PBXBuildFile; fileRef = 92ABB0A81941915700FC40CB /* NIAttributedLabel+TagString.m */; };
 		92C13F831946D58200F6566A /* UIButton+TMOButton.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 92C13F7E1946D03900F6566A /* UIButton+TMOButton.h */; };
 		92C13F841946D58200F6566A /* UIButton+TMOButton.m in CopyFiles */ = {isa = PBXBuildFile; fileRef = 92C13F7F1946D03900F6566A /* UIButton+TMOButton.m */; };
 		92C2AFF518F69375007EF9C3 /* TMOObjectVerifier.m in Sources */ = {isa = PBXBuildFile; fileRef = 92C2AFF418F69375007EF9C3 /* TMOObjectVerifier.m */; };
@@ -119,8 +117,6 @@
 			files = (
 				921C01351948273A00BB558D /* TMOSecurity.h in CopyFiles */,
 				921C01361948273A00BB558D /* TMOSecurity.m in CopyFiles */,
-				92C13F811946D58200F6566A /* NIAttributedLabel+TagString.h in CopyFiles */,
-				92C13F821946D58200F6566A /* NIAttributedLabel+TagString.m in CopyFiles */,
 				92C13F831946D58200F6566A /* UIButton+TMOButton.h in CopyFiles */,
 				92C13F841946D58200F6566A /* UIButton+TMOButton.m in CopyFiles */,
 				922F60AA19349104005AD787 /* TModel.php in CopyFiles */,
@@ -213,12 +209,12 @@
 		9225637A18FD2587005BD532 /* TMOStringDemoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TMOStringDemoViewController.h; sourceTree = "<group>"; };
 		9225637B18FD2587005BD532 /* TMOStringDemoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TMOStringDemoViewController.m; sourceTree = "<group>"; };
 		922F60A8193490F8005AD787 /* TModel.php */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.php; name = TModel.php; path = TModel/TModel.php; sourceTree = "<group>"; };
+		92493E25198F57CF00DF07D1 /* NIAttributedLabel+TagString.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NIAttributedLabel+TagString.h"; sourceTree = "<group>"; };
+		92493E26198F57CF00DF07D1 /* NIAttributedLabel+TagString.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NIAttributedLabel+TagString.m"; sourceTree = "<group>"; };
 		927AD2CE18FFBC7600498AD0 /* TMOFMDBTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TMOFMDBTests.m; sourceTree = "<group>"; };
 		927C800F194FF23F004DD8BC /* TMOTableDataViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TMOTableDataViewController.h; sourceTree = "<group>"; };
 		927C8010194FF23F004DD8BC /* TMOTableDataViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TMOTableDataViewController.m; sourceTree = "<group>"; };
 		927C8011194FF23F004DD8BC /* TMOTableDataViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TMOTableDataViewController.xib; sourceTree = "<group>"; };
-		92ABB0A81941915700FC40CB /* NIAttributedLabel+TagString.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NIAttributedLabel+TagString.m"; sourceTree = "<group>"; };
-		92ABB0A91941915700FC40CB /* NIAttributedLabel+TagString.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NIAttributedLabel+TagString.h"; sourceTree = "<group>"; };
 		92BAE07D18F3F1B900C941D0 /* UIImageView+TMOImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImageView+TMOImageView.h"; sourceTree = "<group>"; };
 		92BAE07E18F3F1B900C941D0 /* UIImageView+TMOImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImageView+TMOImageView.m"; sourceTree = "<group>"; };
 		92BFF83D18F638E700A13FD8 /* NSString+TMOString.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+TMOString.h"; sourceTree = "<group>"; };
@@ -447,8 +443,6 @@
 		2E8CAA3518E947DC0047D335 /* UIKit */ = {
 			isa = PBXGroup;
 			children = (
-				92ABB0A91941915700FC40CB /* NIAttributedLabel+TagString.h */,
-				92ABB0A81941915700FC40CB /* NIAttributedLabel+TagString.m */,
 				920F0F1F18E94DB900B9E953 /* TMOUIKitCore.h */,
 				920F0F2018E94DB900B9E953 /* TMOUIKitCore.m */,
 				920F0F2218E94E2B00B9E953 /* TMOUIKitMacro.h */,
@@ -473,6 +467,15 @@
 			name = iPad;
 			sourceTree = "<group>";
 		};
+		92493E24198F57A100DF07D1 /* TMOAttributedLabel */ = {
+			isa = PBXGroup;
+			children = (
+				92493E25198F57CF00DF07D1 /* NIAttributedLabel+TagString.h */,
+				92493E26198F57CF00DF07D1 /* NIAttributedLabel+TagString.m */,
+			);
+			path = TMOAttributedLabel;
+			sourceTree = "<group>";
+		};
 		927C800B194FD8BF004DD8BC /* Vendors */ = {
 			isa = PBXGroup;
 			children = (
@@ -490,6 +493,7 @@
 		92DFBF8219876E9700E67D65 /* TeemoSubmodule */ = {
 			isa = PBXGroup;
 			children = (
+				92493E24198F57A100DF07D1 /* TMOAttributedLabel */,
 				F0CC8B1C198C7375004C3587 /* TMOSmarty */,
 				92DFBF8319876E9700E67D65 /* TMOFMDB */,
 			);
@@ -728,11 +732,11 @@
 				9225636E18FD1732005BD532 /* TMOUIKitDemoViewController.m in Sources */,
 				2E19539018EAA0F300E1F463 /* TMOToolKitCore.m in Sources */,
 				92C2AFF518F69375007EF9C3 /* TMOObjectVerifier.m in Sources */,
-				92ABB0AA1941915700FC40CB /* NIAttributedLabel+TagString.m in Sources */,
 				92C13F801946D03900F6566A /* UIButton+TMOButton.m in Sources */,
 				F0CC8B2A198C7375004C3587 /* TMOSmarty.m in Sources */,
 				920F0F2818E9625700B9E953 /* UIColor+TMOColor.m in Sources */,
 				2E8CAA0A18E93E5F0047D335 /* TMOAppDelegate.m in Sources */,
+				92493E27198F57CF00DF07D1 /* NIAttributedLabel+TagString.m in Sources */,
 				92BFF83F18F638E700A13FD8 /* NSString+TMOString.m in Sources */,
 				9225637C18FD2587005BD532 /* TMOStringDemoViewController.m in Sources */,
 				F0CC8B27198C7375004C3587 /* Smarty.m in Sources */,
@@ -859,6 +863,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 6BD09E4E614B4FC1A7EFC90E /* Pods.xcconfig */;
 			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
@@ -869,7 +874,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "TeemoV2/TeemoV2-Prefix.pch";
 				INFOPLIST_FILE = "TeemoV2/TeemoV2-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/V1Adater/External/UMAnalytics_Sdk_2.2.1.OpenUDID",
@@ -877,7 +882,7 @@
 					"$(PROJECT_DIR)/V1Adater/External/UMSocial_Sdk_3.3.4",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -886,6 +891,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 6BD09E4E614B4FC1A7EFC90E /* Pods.xcconfig */;
 			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
@@ -896,7 +902,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "TeemoV2/TeemoV2-Prefix.pch";
 				INFOPLIST_FILE = "TeemoV2/TeemoV2-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/V1Adater/External/UMAnalytics_Sdk_2.2.1.OpenUDID",
@@ -904,7 +910,7 @@
 					"$(PROJECT_DIR)/V1Adater/External/UMSocial_Sdk_3.3.4",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;

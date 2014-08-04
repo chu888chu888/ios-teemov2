@@ -34,15 +34,19 @@ Pod::Spec.new do |s|
   s.dependency "RNCryptor", "~> 2.2"
   s.dependency "SSKeychain"
   s.dependency "TMOTableView"
-  
-  
+
+
   s.subspec 'TMOFMDB' do |sub1|
     sub1.source_files = "TeemoSubmodule/TMOFMDB/*.{h,m}";
     sub1.dependency "FMDB", "~> 2.2"
   end
-  
+
   s.subspec 'TMOSmarty' do |sub2|
     sub2.source_files = "TeemoSubmodule/TMOSmarty/*.{h,m}","TeemoFramework", "TeemoFramework/**/*.{h,m}";
+  end
+
+  s.subspec 'TMOAttributedLabel' do |sub3|
+    sub2.source_files = "TeemoSubmodule/TMOAttributedLabel/*.{h,m}","TeemoFramework", "TeemoFramework/**/*.{h,m}";
   end
 
 
