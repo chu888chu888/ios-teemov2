@@ -45,8 +45,8 @@ Pod::Spec.new do |s|
   end
 
   s.subspec 'TMOAttributedLabel' do |sub3|
-    sub2.source_files = "TeemoSubmodule/TMOAttributedLabel/*.{h,m}","TeemoFramework", "TeemoFramework/**/*.{h,m}";
-    sub2.dependency "NimbusKit-AttributedLabel"
+    sub3.source_files = "TeemoSubmodule/TMOAttributedLabel/*.{h,m}","TeemoFramework", "TeemoFramework/**/*.{h,m}";
+    sub3.dependency "NimbusKit-AttributedLabel"
   end
 
 
