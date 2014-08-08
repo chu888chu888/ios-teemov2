@@ -17,37 +17,40 @@ Pod::Spec.new do |s|
 
   s.author             = { "PonyCui" => "cuis@vip.qq.com" }
 
+  s.default_subspec = "Core"
+
   s.platform     = :ios, "5.0"
 
   s.source       = { :git => "https://github.com/duowan/teemov2.git", :tag => "0.0.1" }
 
-  s.source_files  = "TeemoFramework", "TeemoFramework/**/*.{h,m}"
-  s.preserve_paths = "TeemoFramework/**/*.{php}"
-
   s.requires_arc = true
 
-  s.dependency "gtm-http-fetcher", "~> 1.0.129"
-  s.dependency "Reachability", "~> 3.1.1"
-  s.dependency "MBProgressHUD", "~> 0.8"
-  s.dependency "Objective-LevelDB", "~> 2.0.6"
-  s.dependency "RNCryptor", "~> 2.2"
-  s.dependency "SSKeychain"
-  s.dependency "TMOTableView"
-
-
-  s.subspec 'TMOFMDB' do |sub1|
-    sub1.source_files = "TeemoSubmodule/TMOFMDB/*.{h,m}";
-    sub1.dependency "FMDB", "~> 2.2"
+  s.subspec "Core" do |ss|
+    ss.source_files = "TeemoFramework", "TeemoFramework/**/*.{h,m}"
+    ss.preserve_paths = "TeemoFramework/**/*.{php}"
+    ss.dependency "gtm-http-fetcher", "~> 1.0.129"
+    ss.dependency "Reachability", "~> 3.1.1"
+    ss.dependency "MBProgressHUD", "~> 0.8"
+    ss.dependency "Objective-LevelDB", "~> 2.0.6"
+    ss.dependency "RNCryptor", "~> 2.2"
+    ss.dependency "SSKeychain"
+    ss.dependency "TMOTableView"
   end
 
-  s.subspec 'TMOSmarty' do |sub2|
-    sub2.source_files = "TeemoSubmodule/TMOSmarty/*.{h,m}","TeemoFramework", "TeemoFramework/**/*.{h,m}";
+  s.subspec 'TMOFMDB' do |ss|
+    ss.source_files = "TeemoSubmodule/TMOFMDB/*.{h,m}";
+    ss.dependency "FMDB", "~> 2.2"
   end
 
-  s.subspec 'TMOAttributedLabel' do |sub3|
-    sub3.source_files = "TeemoSubmodule/TMOAttributedLabel/*.{h,m}","TeemoFramework", "TeemoFramework/**/*.{h,m}";
-    sub3.dependency "NimbusKit-AttributedLabel"
+  s.subspec 'TMOSmarty' do |ss|
+    ss.source_files = "TeemoSubmodule/TMOSmarty/*.{h,m}";
+    ss.dependency "teemov2/Core"
   end
+
+  #s.subspec 'TMOAttributedLabel' do |sub3|
+  #  sub3.source_files = "TeemoSubmodule/TMOAttributedLabel/*.{h,m}";
+  #  sub3.dependency "NimbusKit-AttributedLabel"
+  #end
 
 
 end

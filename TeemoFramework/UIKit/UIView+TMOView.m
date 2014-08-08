@@ -10,7 +10,6 @@
 
 #import "UIView+TMOView.h"
 #import "NSString+TMOString.h"
-#import "UIView+TMOSmarty.h"
 #import <objc/runtime.h>
 
 @interface TMOProgressHUD : MBProgressHUD
