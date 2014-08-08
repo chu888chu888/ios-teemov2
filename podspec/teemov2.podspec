@@ -30,7 +30,6 @@ Pod::Spec.new do |s|
   s.dependency "Reachability", "~> 3.1.1"
   s.dependency "MBProgressHUD", "~> 0.8"
   s.dependency "Objective-LevelDB", "~> 2.0.6"
-  s.dependency "NimbusKit-AttributedLabel", "~> 1.0.0"
   s.dependency "RNCryptor", "~> 2.2"
   s.dependency "SSKeychain"
   s.dependency "TMOTableView"
@@ -47,6 +46,7 @@ Pod::Spec.new do |s|
 
   s.subspec 'TMOAttributedLabel' do |sub3|
     sub2.source_files = "TeemoSubmodule/TMOAttributedLabel/*.{h,m}","TeemoFramework", "TeemoFramework/**/*.{h,m}";
+    sub2.dependency "NimbusKit-AttributedLabel"
   end
 
 
