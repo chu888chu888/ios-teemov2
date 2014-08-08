@@ -17,7 +17,7 @@ Pod::Spec.new do |s|
 
   s.author             = { "PonyCui" => "cuis@vip.qq.com" }
 
-  s.platform     = :ios, "6.0"
+  s.platform     = :ios, "5.0"
 
   s.source       = { :git => "https://github.com/duowan/teemov2.git", :tag => "0.0.1" }
 
