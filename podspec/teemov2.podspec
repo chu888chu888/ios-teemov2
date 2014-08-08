@@ -15,17 +15,18 @@ Pod::Spec.new do |s|
 
   s.license      = "MIT"
 
+  s.platform     = :ios, "6.0"
+
   s.author             = { "PonyCui" => "cuis@vip.qq.com" }
 
   s.default_subspec = "Core"
-
-  s.platform     = :ios, "5.0"
 
   s.source       = { :git => "https://github.com/duowan/teemov2.git", :tag => "0.0.1" }
 
   s.requires_arc = true
 
   s.subspec "Core" do |ss|
+    ss.platform     = :ios, "5.0"
     ss.source_files = "TeemoFramework", "TeemoFramework/**/*.{h,m}"
     ss.preserve_paths = "TeemoFramework/**/*.{php}"
     ss.dependency "gtm-http-fetcher", "~> 1.0.129"
@@ -38,19 +39,23 @@ Pod::Spec.new do |s|
   end
 
   s.subspec 'TMOFMDB' do |ss|
-    ss.source_files = "TeemoSubmodule/TMOFMDB/*.{h,m}";
+    ss.platform     = :ios, "5.0"
+    ss.source_files = "TeemoSubmodule/TMOFMDB/*.{h,m}"
     ss.dependency "FMDB", "~> 2.2"
   end
 
   s.subspec 'TMOSmarty' do |ss|
-    ss.source_files = "TeemoSubmodule/TMOSmarty/*.{h,m}";
+    ss.platform     = :ios, "5.0"
+    ss.source_files = "TeemoSubmodule/TMOSmarty/*.{h,m}"
     ss.dependency "teemov2/Core"
   end
 
-  #s.subspec 'TMOAttributedLabel' do |sub3|
-  #  sub3.source_files = "TeemoSubmodule/TMOAttributedLabel/*.{h,m}";
-  #  sub3.dependency "NimbusKit-AttributedLabel"
-  #end
+  s.subspec 'TMOTextKit' do |ss|
+    ss.platform = :ios, "6.0"
+    ss.source_files = "TeemoSubmodule/TMOAttributedLabel/*.{h,m}"
+    ss.dependency "NimbusKit-AttributedLabel"
+    ss.dependency "teemov2/Core"
+  end
 
 
 end
