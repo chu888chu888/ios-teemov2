@@ -115,7 +115,7 @@
     demoItem3.URLString = @"http://api.map.baidu.com/geocoder?address=%E4%B8%8A%E5%9C%B0%E5%8D%81%E8%A1%9710%E5%8F%B7&output=json&key=37492c0ee6f924cb5e934fa08c6b1676";
     TMOHTTPTransactionItem *demoItem4 = [[TMOHTTPTransactionItem alloc] init];
     demoItem4.URLString = @"http://api.map.baidu.com/geocoder?address=%E4%B8%8A%E5%9C%B0%E5%8D%81%E8%A1%9710%E5%8F%B7&output=json&key=37492c0ee6f924cb5e934fa08c6b1676";
-    demoItem2.stopTransactionIfError = YES;
+//    demoItem2.stopTransactionIfError = YES;
     
     NSArray *querys = @[demoItem1, demoItem2, demoItem3, demoItem4];
     

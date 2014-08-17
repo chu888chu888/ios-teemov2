@@ -7,6 +7,7 @@
 //
 
 #import "TMOHTTPTransactionItem.h"
+#import "TMOHTTPResult.h"
 #import "TMOHTTPManager.h"
 
 

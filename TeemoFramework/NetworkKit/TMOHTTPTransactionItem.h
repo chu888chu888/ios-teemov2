@@ -7,7 +7,8 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "TMOHTTPResult.h"
+
+@class TMOHTTPResult;
 
 /**
  *  事务事件
