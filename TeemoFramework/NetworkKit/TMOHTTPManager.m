@@ -72,8 +72,9 @@ typedef void (^TMOReachabilityStatusBlock)(TMOReachabilityStatus status);
 
 #pragma mark - Fetcher
 
-+ (void)simpleGet:(NSString *)argURL completionBlock:(void (^)(TMOHTTPResult *, NSError *))argBlock {
++ (GTMHTTPFetcher *)simpleGet:(NSString *)argURL completionBlock:(void (^)(TMOHTTPResult *, NSError *))argBlock {
     TMOHTTPManager *manager = [self shareInstance];
+    return
     [manager fetchWithURL:argURL
                  postInfo:nil
           timeoutInterval:(manager.reachabilityStatus == TMOReachabilityStatusWWAN ? 60 : 10)
@@ -85,10 +86,11 @@ typedef void (^TMOReachabilityStatusBlock)(TMOReachabilityStatus status);
           completionBlock:argBlock];
 }
 
-+ (void)simplePost:(NSString *)argURL
++ (GTMHTTPFetcher *)simplePost:(NSString *)argURL
           postInfo:(NSDictionary *)argPostInfo
    completionBlock:(void (^)(TMOHTTPResult *, NSError *))argBlock {
     TMOHTTPManager *manager = [self shareInstance];
+    return
     [manager fetchWithURL:argURL
                  postInfo:argPostInfo
           timeoutInterval:60
@@ -100,10 +102,11 @@ typedef void (^TMOReachabilityStatusBlock)(TMOReachabilityStatus status);
           completionBlock:argBlock];
 }
 
-+ (void)simplePost:(NSString *)argURL
++ (GTMHTTPFetcher *)simplePost:(NSString *)argURL
           postData:(NSData *)argPostData
    completionBlock:(void (^)(TMOHTTPResult *, NSError *))argBlock {
     TMOHTTPManager *manager = [self shareInstance];
+    return
     [manager fetchWithURL:argURL
                  postData:argPostData
           timeoutInterval:60

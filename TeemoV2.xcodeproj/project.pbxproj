@@ -26,6 +26,7 @@
 		2EE8D85618EC075600405406 /* TMOKVDB.m in Sources */ = {isa = PBXBuildFile; fileRef = 2EE8D85518EC075600405406 /* TMOKVDB.m */; };
 		35439A44345B41ED85CC8AFC /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8388B4E5CED74D2E99AAF859 /* libPods.a */; };
 		6391C856199F9E39001AB9DB /* TMOHTTPTransactionItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 6391C855199F9E39001AB9DB /* TMOHTTPTransactionItem.m */; };
+		6391C85C19A070D3001AB9DB /* TMOHTTPPromise.m in Sources */ = {isa = PBXBuildFile; fileRef = 6391C85B19A070D3001AB9DB /* TMOHTTPPromise.m */; };
 		7BA56A9D871F4A05AD77A57A /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8388B4E5CED74D2E99AAF859 /* libPods.a */; };
 		920F0F2118E94DB900B9E953 /* TMOUIKitCore.m in Sources */ = {isa = PBXBuildFile; fileRef = 920F0F2018E94DB900B9E953 /* TMOUIKitCore.m */; };
 		920F0F2818E9625700B9E953 /* UIColor+TMOColor.m in Sources */ = {isa = PBXBuildFile; fileRef = 920F0F2718E9625700B9E953 /* UIColor+TMOColor.m */; };
@@ -178,6 +179,8 @@
 		2EE8D85518EC075600405406 /* TMOKVDB.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TMOKVDB.m; sourceTree = "<group>"; };
 		6391C854199F9E39001AB9DB /* TMOHTTPTransactionItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TMOHTTPTransactionItem.h; sourceTree = "<group>"; };
 		6391C855199F9E39001AB9DB /* TMOHTTPTransactionItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TMOHTTPTransactionItem.m; sourceTree = "<group>"; };
+		6391C85A19A070D3001AB9DB /* TMOHTTPPromise.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TMOHTTPPromise.h; sourceTree = "<group>"; };
+		6391C85B19A070D3001AB9DB /* TMOHTTPPromise.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TMOHTTPPromise.m; sourceTree = "<group>"; };
 		6BD09E4E614B4FC1A7EFC90E /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
 		8388B4E5CED74D2E99AAF859 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		920F0F1F18E94DB900B9E953 /* TMOUIKitCore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TMOUIKitCore.h; sourceTree = "<group>"; };
@@ -423,6 +426,8 @@
 				2E19538918EA8DAF00E1F463 /* TMOHTTPResult.m */,
 				6391C854199F9E39001AB9DB /* TMOHTTPTransactionItem.h */,
 				6391C855199F9E39001AB9DB /* TMOHTTPTransactionItem.m */,
+				6391C85A19A070D3001AB9DB /* TMOHTTPPromise.h */,
+				6391C85B19A070D3001AB9DB /* TMOHTTPPromise.m */,
 			);
 			path = NetworkKit;
 			sourceTree = "<group>";
@@ -750,6 +755,7 @@
 				6391C856199F9E39001AB9DB /* TMOHTTPTransactionItem.m in Sources */,
 				F0CC8B2B198C7375004C3587 /* UIView+TMOSmarty.m in Sources */,
 				F0F60D631968F2A6003FD46A /* TMOTableDataTableViewController.m in Sources */,
+				6391C85C19A070D3001AB9DB /* TMOHTTPPromise.m in Sources */,
 				2EE8D85618EC075600405406 /* TMOKVDB.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

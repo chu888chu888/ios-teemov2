@@ -120,7 +120,7 @@ typedef enum {
  *  @param argURL   GET请求的URL
  *  @param argBlock 请求完成回调块
  */
-+ (void)simpleGet:(NSString *)argURL
++ (GTMHTTPFetcher *)simpleGet:(NSString *)argURL
   completionBlock:(void (^)(TMOHTTPResult *result, NSError *error))argBlock;
 
 /**
@@ -131,7 +131,7 @@ typedef enum {
  *  @param argPostInfo POST请求的参数，NSDictionary
  *  @param argBlock    请求完成回调块
  */
-+ (void)simplePost:(NSString *)argURL
++ (GTMHTTPFetcher *)simplePost:(NSString *)argURL
           postInfo:(NSDictionary *)argPostInfo
    completionBlock:(void (^)(TMOHTTPResult *result, NSError *error))argBlock;
 
@@ -143,7 +143,7 @@ typedef enum {
  *  @param argPostData POST请求的data
  *  @param argBlock    请求完成回调块
  */
-+ (void)simplePost:(NSString *)argURL
++ (GTMHTTPFetcher *)simplePost:(NSString *)argURL
           postData:(NSData *)argPostData
    completionBlock:(void (^)(TMOHTTPResult *, NSError *))argBlock;
 
