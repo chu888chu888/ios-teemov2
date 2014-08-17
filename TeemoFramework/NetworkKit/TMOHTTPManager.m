@@ -100,6 +100,59 @@ typedef void (^TMOReachabilityStatusBlock)(TMOReachabilityStatus status);
           completionBlock:argBlock];
 }
 
++ (void)simplePost:(NSString *)argURL
+          postData:(NSData *)argPostData
+   completionBlock:(void (^)(TMOHTTPResult *, NSError *))argBlock {
+    TMOHTTPManager *manager = [self shareInstance];
+    [manager fetchWithURL:argURL
+                 postData:argPostData
+          timeoutInterval:60
+                  headers:nil
+                    owner:nil
+                cacheTime:-1
+          fetcherPriority:TMOFetcherPriorityNormal
+          comletionHandle:nil
+          completionBlock:argBlock];
+}
+
+/**
+ *  串行事务请求
+ */
++ (void)simpleTransaction:(NSArray *)argTransactionItems
+          completionBlock:(void (^)(NSArray *itemsResult))argBlock {
+    NSMutableArray *mutableItems = [argTransactionItems mutableCopy];
+    NSMutableArray *mutableItemsResult = [NSMutableArray array];
+    [self transactionExecute:mutableItems
+      withMutableItemsResult:mutableItemsResult
+                   withBlock:argBlock];
+}
+
++ (void)transactionExecute:(NSMutableArray *)argMutableItems
+    withMutableItemsResult:(NSMutableArray *)argMutableItemsResult
+                 withBlock:(void (^)(NSArray *itemsResult))argBlock {
+    if ([argMutableItems count] > 0) {
+        TMOHTTPTransactionItem *item = [argMutableItems firstObject];
+        [item queryWithBlock:^(TMOHTTPResult *result, NSError *error) {
+            result.error = error;
+            [argMutableItemsResult addObject:result];
+            if (error != nil && item.stopTransactionIfError) {
+                //中断请求
+                argBlock([argMutableItemsResult copy]);
+            }
+            else {
+                //继续请求
+                [argMutableItems removeObjectAtIndex:0];
+                [self transactionExecute:argMutableItems
+                  withMutableItemsResult:argMutableItemsResult
+                               withBlock:argBlock];
+            }
+        }];
+    }
+    else {
+        argBlock([argMutableItemsResult copy]);
+    }
+}
+
 - (GTMHTTPFetcher *)fetchWithURL:(NSString *)argURL
             postInfo:(NSDictionary *)argPostInfo
      timeoutInterval:(NSTimeInterval)argTimeoutInterval

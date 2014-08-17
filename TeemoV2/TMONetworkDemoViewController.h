@@ -13,5 +13,6 @@
 - (void)demo1;
 - (void)demo2;
 - (void)demo3;
+- (void)demo5;
 
 @end

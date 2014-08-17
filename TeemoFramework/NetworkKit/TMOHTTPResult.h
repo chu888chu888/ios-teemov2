@@ -36,6 +36,11 @@
 @property (nonatomic, strong, readonly) id JSONObj;
 
 /**
+ *  此处的Error只有在transaction的情况下才会生效，正常情况下，请勿使用
+ */
+@property (nonatomic, strong) NSError *error;
+
+/**
  *  获取一个结果对象，只能通过本方法获取实例对象
  *
  *  @param request  request
