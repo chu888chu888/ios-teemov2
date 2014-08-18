@@ -35,6 +35,14 @@ typedef enum {
 + (void)prepareForURLString:(NSString *)argURLString withData:(NSData *)argData;
 
 /**
+ *  更新一个保证级请求的缓存数据
+ *
+ *  @param argURLString URL
+ *  @param argData      Data
+ */
++ (void)updateForURLString:(NSString *)argURLString withData:(NSData *)argData;
+
+/**
  *  创建一个保证级的请求
  *
  *  @param argFetcherBlock 需要返回一个请求实例

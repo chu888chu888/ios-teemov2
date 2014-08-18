@@ -22,6 +22,14 @@ static LevelDB *promiseLevelDB;
 }
 
 + (void)prepareForURLString:(NSString *)argURLString withData:(NSData *)argData {
+    if ([promiseLevelDB objectForKey:argURLString] == nil) {
+        NSAssert([argData isKindOfClass:[NSData class]], @"NSData Class Require");
+        [promiseLevelDB setObject:argData forKey:argURLString];
+    }
+}
+
++ (void)updateForURLString:(NSString *)argURLString withData:(NSData *)argData {
+    NSAssert([argData isKindOfClass:[NSData class]], @"NSData Class Require");
     [promiseLevelDB setObject:argData forKey:argURLString];
 }
 
