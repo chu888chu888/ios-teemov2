@@ -74,9 +74,15 @@
         [(UIButton *)self setTitle:[Smarty stringByReplaceingSmartyCode:text withObject:argObject]
                           forState:UIControlStateNormal];
     }
-    if ([self valueForAdditionKey:@"smartyImageURLString"] != nil) {
-        NSString *text = [self valueForAdditionKey:@"smartyImageURLString"];
-        [(UIImageView *)self loadImageWithURLString:[Smarty stringByReplaceingSmartyCode:text withObject:argObject]];
+    if ([self valueForAdditionKey:@"smartyImageKey"] != nil) {
+        NSString *text = [self valueForAdditionKey:@"smartyImageKey"];
+        id theObject = [Smarty stringByReplaceingSmartyCode:text withObject:argObject];
+        if ([theObject isKindOfClass:[NSString class]]) {
+            [(UIImageView *)self loadImageWithURLString:theObject];
+        }
+        else if([theObject isKindOfClass:[UIImage class]]) {
+            [(UIImageView *)self setImage:theObject];
+        }
     }
 }
 
@@ -121,8 +127,8 @@
     }
     else if ([self isKindOfClass:[UIImageView class]]) {
         if ([Smarty isSmarty:TOString(self.accessibilityLabel)]) {
-            [self setAdditionValue:self.accessibilityIdentifier forKey:@"smartyImageURLString"];
-            [Smarty addSmartyBindBySmartyCode:[(UIImageView *)self accessibilityIdentifier] withView:self withDataSource:argDataSource];
+            [self setAdditionValue:self.accessibilityLabel forKey:@"smartyImageKey"];
+            [Smarty addSmartyBindBySmartyCode:[(UIImageView *)self accessibilityLabel] withView:self withDataSource:argDataSource];
         }
     }
     

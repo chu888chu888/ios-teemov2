@@ -74,8 +74,8 @@ static NSRegularExpression *smartyRegularExpression;
 /**
  *  replace all smarty keywords.
  */
-+ (NSString *)stringByReplaceingSmartyCode:(NSString *)argString
-                                withObject:(NSDictionary *)argObject {
++ (id)stringByReplaceingSmartyCode:(NSString *)argString
+                                withObject:(id)argObject {
     NSString *newString = [argString copy];
     NSArray *theResult = [smartyRegularExpression matchesInString:argString
                                                           options:NSMatchingReportCompletion
@@ -84,9 +84,15 @@ static NSRegularExpression *smartyRegularExpression;
         if (resultItem.numberOfRanges >= 2) {
             NSString *smartyString = [argString substringWithRange:[resultItem rangeAtIndex:0]];
             NSString *smartyParam = [argString substringWithRange:[resultItem rangeAtIndex:1]];
-            newString = [newString stringByReplacingOccurrencesOfString:smartyString
-                                                             withString:[self stringByParam:smartyParam
-                                                                                 withObject:argObject]];
+            id theObject = [self stringByParam:smartyParam
+                                    withObject:argObject];
+            if([theObject isKindOfClass:[UIImage class]]) {
+                return theObject;
+            }
+            else {
+                newString = [newString stringByReplacingOccurrencesOfString:smartyString
+                                                                 withString:TOString(theObject)];
+            }
         }
     }
     return newString;
@@ -183,7 +189,9 @@ static NSRegularExpression *smartyRegularExpression;
         for (NSTextCheckingResult *resultItem in theResult) {
             if (resultItem.numberOfRanges >= 2) {
                 NSString *smartyParam = [mutableAttributedString.string substringWithRange:[resultItem rangeAtIndex:1]];
-                [mutableAttributedString replaceCharactersInRange:resultItem.range withString:[Smarty stringByParam:smartyParam withObject:argObject]];
+                id theObject = [Smarty stringByParam:smartyParam withObject:argObject];
+                [mutableAttributedString replaceCharactersInRange:resultItem.range
+                                                       withString:TOString(theObject)];
             }
             break;
         }
@@ -194,7 +202,7 @@ static NSRegularExpression *smartyRegularExpression;
 /**
  *  get final value
  */
-+ (NSString *)stringByParam:(NSString *)argParam withObject:(id)argObject {
++ (id)stringByParam:(NSString *)argParam withObject:(id)argObject {
     
     NSArray *functionUseArray;
     if ([argParam contains:@"|"]) {
@@ -243,7 +251,7 @@ static NSRegularExpression *smartyRegularExpression;
         }
     }
     
-    return TOString(lastValue);
+    return lastValue;
 }
 
 /**
