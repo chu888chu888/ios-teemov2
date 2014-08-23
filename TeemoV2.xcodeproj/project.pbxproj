@@ -91,6 +91,7 @@
 		92E6DA9918ED4479002CC61F /* TMOKVDBTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 92E6DA9818ED4479002CC61F /* TMOKVDBTests.m */; };
 		AB8F8457194A9CB600290CD4 /* NSArray+TMODuplicate.m in Sources */ = {isa = PBXBuildFile; fileRef = AB8F8456194A9CB600290CD4 /* NSArray+TMODuplicate.m */; };
 		AB8F845B194A9D8400290CD4 /* TMOBaseModel.m in Sources */ = {isa = PBXBuildFile; fileRef = AB8F845A194A9D8400290CD4 /* TMOBaseModel.m */; };
+		F0450F4419A86C5300A03FE3 /* TMOLevelDBQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = F0450F4319A86C5300A03FE3 /* TMOLevelDBQueue.m */; };
 		F0CC8B27198C7375004C3587 /* Smarty.m in Sources */ = {isa = PBXBuildFile; fileRef = F0CC8B1E198C7375004C3587 /* Smarty.m */; };
 		F0CC8B28198C7375004C3587 /* SmartyBinder.m in Sources */ = {isa = PBXBuildFile; fileRef = F0CC8B20198C7375004C3587 /* SmartyBinder.m */; };
 		F0CC8B29198C7375004C3587 /* SmartyFunctions.m in Sources */ = {isa = PBXBuildFile; fileRef = F0CC8B22198C7375004C3587 /* SmartyFunctions.m */; };
@@ -242,6 +243,8 @@
 		AB8F8456194A9CB600290CD4 /* NSArray+TMODuplicate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSArray+TMODuplicate.m"; sourceTree = "<group>"; };
 		AB8F8459194A9D8400290CD4 /* TMOBaseModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TMOBaseModel.h; sourceTree = "<group>"; };
 		AB8F845A194A9D8400290CD4 /* TMOBaseModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TMOBaseModel.m; sourceTree = "<group>"; };
+		F0450F4219A86C5300A03FE3 /* TMOLevelDBQueue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TMOLevelDBQueue.h; sourceTree = "<group>"; };
+		F0450F4319A86C5300A03FE3 /* TMOLevelDBQueue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TMOLevelDBQueue.m; sourceTree = "<group>"; };
 		F0CC8B1D198C7375004C3587 /* Smarty.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Smarty.h; sourceTree = "<group>"; };
 		F0CC8B1E198C7375004C3587 /* Smarty.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Smarty.m; sourceTree = "<group>"; };
 		F0CC8B1F198C7375004C3587 /* SmartyBinder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SmartyBinder.h; sourceTree = "<group>"; };
@@ -413,6 +416,8 @@
 			children = (
 				2EE8D85418EC075600405406 /* TMOKVDB.h */,
 				2EE8D85518EC075600405406 /* TMOKVDB.m */,
+				F0450F4219A86C5300A03FE3 /* TMOLevelDBQueue.h */,
+				F0450F4319A86C5300A03FE3 /* TMOLevelDBQueue.m */,
 			);
 			path = DataKit;
 			sourceTree = "<group>";
@@ -753,6 +758,7 @@
 				92DFBF8619876E9700E67D65 /* TMOFMDB.m in Sources */,
 				F0CC8B28198C7375004C3587 /* SmartyBinder.m in Sources */,
 				6391C856199F9E39001AB9DB /* TMOHTTPTransactionItem.m in Sources */,
+				F0450F4419A86C5300A03FE3 /* TMOLevelDBQueue.m in Sources */,
 				F0CC8B2B198C7375004C3587 /* UIView+TMOSmarty.m in Sources */,
 				F0F60D631968F2A6003FD46A /* TMOTableDataTableViewController.m in Sources */,
 				6391C85C19A070D3001AB9DB /* TMOHTTPPromise.m in Sources */,
