@@ -57,7 +57,7 @@
                                  fetcherPriority:TMOFetcherPriorityLow
                                  comletionHandle:nil
                                  completionBlock:^(TMOHTTPResult *result, NSError *error) {
-                                     if (error || ![result.request.URL.absoluteString isEqualToString:[self valueForAdditionKey:@"imageViewURLString"]]) {
+                                     if (error || ![result.originalURL.absoluteString isEqualToString:[self valueForAdditionKey:@"imageViewURLString"]]) {
                                          //加载失败
                                          if (self.errorImage != nil) {
                                              self.image = self.errorImage;
@@ -93,7 +93,7 @@
                                  fetcherPriority:TMOFetcherPriorityLow
                                  comletionHandle:nil
                                  completionBlock:^(TMOHTTPResult *result, NSError *error) {
-                                     if (error || ![result.request.URL.absoluteString isEqualToString:[self valueForAdditionKey:@"imageViewURLString"]]) {
+                                     if (error || ![result.originalURL.absoluteString isEqualToString:[self valueForAdditionKey:@"imageViewURLString"]]) {
                                          //加载失败
                                          if (self.errorImage != nil) {
                                              self.image = self.errorImage;

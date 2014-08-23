@@ -318,12 +318,12 @@ completeUploadBlock:(void (^)(TMOHTTPResult *result, NSError *error))argBlock {
                      cacheTime:(NSTimeInterval)argCacheTime
                comletionHandle:(SEL)argHandle
                completionBlock:(void (^)(TMOHTTPResult *result, NSError *error))argBlock {
-    NSData *cacheData;
-    
+    NSURL *originalURL = [argFetcher.mutableRequest.URL copy];
     if (argCacheTime >= 0) {
         [self.cacheDatabase objectForKey:argFetcher.mutableRequest.URL.absoluteString withBlock:^(id object) {
             if (object != nil) {
-                TMOHTTPResult *result = [TMOHTTPResult createHTTPResultWithRequest:argFetcher.mutableRequest WithResponse:argFetcher.response WithData:cacheData];
+                TMOHTTPResult *result = [TMOHTTPResult createHTTPResultWithRequest:argFetcher.mutableRequest WithResponse:argFetcher.response WithData:object];
+                result.originalURL = originalURL;
                 if (argBlock) {
                     dispatch_async(dispatch_get_main_queue(), ^{
                         argBlock(result, nil);
@@ -345,16 +345,17 @@ completeUploadBlock:(void (^)(TMOHTTPResult *result, NSError *error))argBlock {
                 }
                 [argFetcher beginFetchWithCompletionHandler:^(NSData *data, NSError *error) {
                     TMOHTTPResult *result = [TMOHTTPResult createHTTPResultWithRequest:fet.mutableRequest WithResponse:fet.response WithData:data];
+                    result.originalURL = originalURL;
                     dispatch_queue_t myDispatchQueue = dispatch_get_main_queue();
                     dispatch_async(myDispatchQueue, ^{
                         if (data && [fet.mutableRequest.HTTPMethod isEqualToString:@"GET"]) {
                             if (argCacheTime < 0) {
-                                [self.cacheDatabase removeObjectForKey:fet.mutableRequest.URL.absoluteString];
+                                [self.cacheDatabase removeObjectForKey:originalURL.absoluteString];
                                 //缓存时间小于0表明需要清除缓存
                             }
                             else {
                                 [self.cacheDatabase setObject:data
-                                                       forKey:fet.mutableRequest.URL.absoluteString
+                                                       forKey:originalURL.absoluteString
                                                   expiredTime:argCacheTime];
                             }
                         }
@@ -379,16 +380,17 @@ completeUploadBlock:(void (^)(TMOHTTPResult *result, NSError *error))argBlock {
         }
         [argFetcher beginFetchWithCompletionHandler:^(NSData *data, NSError *error) {
             TMOHTTPResult *result = [TMOHTTPResult createHTTPResultWithRequest:fet.mutableRequest WithResponse:fet.response WithData:data];
+            result.originalURL = originalURL;
             dispatch_queue_t myDispatchQueue = dispatch_get_main_queue();
             dispatch_async(myDispatchQueue, ^{
                 if (data && [fet.mutableRequest.HTTPMethod isEqualToString:@"GET"]) {
                     if (argCacheTime < 0) {
-                        [self.cacheDatabase removeObjectForKey:fet.mutableRequest.URL.absoluteString];
+                        [self.cacheDatabase removeObjectForKey:originalURL.absoluteString];
                         //缓存时间小于0表明需要清除缓存
                     }
                     else {
                         [self.cacheDatabase setObject:data
-                                               forKey:fet.mutableRequest.URL.absoluteString
+                                               forKey:originalURL.absoluteString
                                           expiredTime:argCacheTime];
                     }
                 }
@@ -526,9 +528,10 @@ completeUploadBlock:(void (^)(TMOHTTPResult *result, NSError *error))argBlock {
             });
         }
     }];
-    
+    NSURL *originalURL = [fet.mutableRequest.URL copy];
     [argFetcher beginFetchWithCompletionHandler:^(NSData *data, NSError *error) {
         TMOHTTPResult *result = [TMOHTTPResult createHTTPResultWithRequest:fet.mutableRequest WithResponse:fet.response WithData:data];
+        result.originalURL = originalURL;
         dispatch_queue_t myDispatchQueue = dispatch_get_main_queue();
         dispatch_async(myDispatchQueue, ^{
             if (argBlock) {

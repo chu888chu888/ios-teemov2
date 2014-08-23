@@ -11,6 +11,11 @@
 @interface TMOHTTPResult : NSObject
 
 /**
+ *  原始的请求URL，此URL不会因目标302转向而改变
+ */
+@property (nonatomic, strong) NSURL *originalURL;
+
+/**
  *  请求的Request，你可以在这里获取本次Request有关的信息
  */
 @property (nonatomic, strong, readonly) NSURLRequest *request;
