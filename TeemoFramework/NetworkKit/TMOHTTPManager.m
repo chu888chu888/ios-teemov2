@@ -63,7 +63,7 @@ typedef void (^TMOReachabilityStatusBlock)(TMOReachabilityStatus status);
     return self;
 }
 
-- (LevelDB *)cacheDatabase {
+- (TMOLevelDBQueue *)cacheDatabase {
     if (_cacheDatabase == nil) {
         _cacheDatabase = [TMOLevelDBQueue databaseWithIdentifier:kTMONetworkCacheDatabaseKey
                                                        directory:NSCachesDirectory];
