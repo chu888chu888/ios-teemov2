@@ -7,7 +7,7 @@
 //
 
 #import "TMOKVDBDemoViewController.h"
-#import "TMOKVDB.h"
+#import "TMOLevelDBQueue.h"
 
 @interface TMOKVDBDemoViewController ()
 
@@ -29,43 +29,23 @@
 {
     [super viewDidLoad];
     
-    LevelDB *db = [TMOKVDB defaultDatabase];//使用系统默认的KVDB库
+    TMOLevelDBQueue *db = [TMOLevelDBQueue defaultDatabase];//使用系统默认的KVDB库
     [db setObject:@"SetSomething" forKey:@"theKey"];//你可以直接存入任何对象
     NSLog(@"%@",[db valueForKey:@"theKey"]);
     
-    LevelDB *customDb = [TMOKVDB customDatabase:@"myCustom"];//使用一个新库存储对象
+    TMOLevelDBQueue *customDb = [TMOLevelDBQueue databaseWithIdentifier:@"myCustom" directory:NSCachesDirectory];//使用一个新库存储对象
     [customDb setObject:@"otherThings" forKey:@"theKey"];
-    NSLog(@"%@",[customDb valueForKey:@"theKey"]);
+    [customDb objectForKey:@"theKey" withBlock:^(id object) {
+        NSLog(@"%@",object);//异步方式获取
+    }];
     
-    NSLog(@"cachesize:%lld",[TMOKVDB sizeOfPath:nil]);
-    [TMOKVDB closeAndReleaseSpace:@"default"];
+    NSLog(@"cachesize:%f",customDb.cacheSize);
+    [customDb releaseAllSpace];
     
-    LevelDB *customPath = [TMOKVDB customDatabase:[NSString stringWithFormat:@"%@tmpKVDB/",NSTemporaryDirectory()]];//把KV库保存至指定路径
+    TMOLevelDBQueue *customPath = [TMOLevelDBQueue databaseWithPath:[NSString stringWithFormat:@"%@tmpKVDB/",NSTemporaryDirectory()]];//把KV库保存至指定路径
     [customPath setObject:@"123123" forKey:@"ccc"];
     NSLog(@"%@",[customPath valueForKey:@"ccc"]);
-    
-    [self reuseLevelKVDB];
-    
     // Do any additional setup after loading the view.
-}
-
-- (void)reuseLevelKVDB {
-    for (int i = 0; i < 1000; i ++) {
-        // 打开1000条新的子线程去操作同一个数据库文件
-        [NSThread detachNewThreadSelector:@selector(setupSomeDataToKVDB) toTarget:self withObject:nil];
-    }
-}
-
-- (void)setupSomeDataToKVDB {
-    // 同一个KVDB数据库
-    LevelDB *customPath = [TMOKVDB customDatabase:[NSString stringWithFormat:@"%@tmpKVDB/",NSTemporaryDirectory()]];//把KV库保存至指定路径
-    
-    for (int i = 0; i < 10; i ++) {
-        [customPath setObject:@"123123" forKey:@"ccc"];
-        sleep(0.1);
-        [customPath setObject:@"setupSomeDataToKVDB" forKey:@"setupSomeDataToKVDB"];
-    }
-    NSLog(@"setupSomeDataToKVDB");
 }
 
 - (void)didReceiveMemoryWarning

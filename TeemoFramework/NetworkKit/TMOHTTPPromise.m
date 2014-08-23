@@ -7,17 +7,18 @@
 //
 
 #import "TMOHTTPPromise.h"
-#import "TMOKVDB.h"
+#import "TMOLevelDBQueue.h"
 #import "TMOHTTPResult.h"
 #import <GTMHTTPFetcher.h>
 
-static LevelDB *promiseLevelDB;
+static TMOLevelDBQueue *promiseLevelDB;
 
 @implementation TMOHTTPPromise
 
 + (void)initialize {
     if (self == [TMOHTTPPromise self]) {
-        promiseLevelDB = [TMOKVDB customDatabase:@"networkPromiseCache"];
+        promiseLevelDB = [TMOLevelDBQueue databaseWithIdentifier:@"networkPromiseCache"
+                                                       directory:NSCachesDirectory];
     }
 }
 
@@ -86,14 +87,14 @@ static LevelDB *promiseLevelDB;
             TMOHTTPResult *result = [TMOHTTPResult createHTTPResultWithRequest:fetcher.mutableRequest WithResponse:nil WithData:aliveCache];
             argPromiseBlock(result, nil);
         }
-        NSData *limitCache = [promiseLevelDB objectWithCacheForKey:URLString];
+        NSData *limitCache = [promiseLevelDB objectForKey:URLString];
         if (limitCache == nil) {
             [fetcher beginFetchWithCompletionHandler:^(NSData *data, NSError *error) {
                 if (error == nil) {
                     TMOHTTPResult *result = [TMOHTTPResult createHTTPResultWithRequest:fetcher.mutableRequest WithResponse:nil WithData:data];
                     argPromiseBlock(result, error);
                     [promiseLevelDB setObject:data forKey:URLString];
-                    [promiseLevelDB setObject:data forKey:URLString cacheTime:argCacheTime];
+                    [promiseLevelDB setObject:data forKey:URLString expiredTime:argCacheTime];
                 }
                 else if(error != nil && aliveCache == nil) {
                     argPromiseBlock(nil, error);

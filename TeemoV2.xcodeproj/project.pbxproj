@@ -23,7 +23,6 @@
 		2E8CAA2318E93E5F0047D335 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 2E8CAA2118E93E5F0047D335 /* InfoPlist.strings */; };
 		2E8CAA2518E93E5F0047D335 /* TeemoV2Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = 2E8CAA2418E93E5F0047D335 /* TeemoV2Tests.m */; };
 		2E9DCB5918E94EED00C140A7 /* TMOHTTPManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 2E9DCB5818E94EED00C140A7 /* TMOHTTPManager.m */; };
-		2EE8D85618EC075600405406 /* TMOKVDB.m in Sources */ = {isa = PBXBuildFile; fileRef = 2EE8D85518EC075600405406 /* TMOKVDB.m */; };
 		35439A44345B41ED85CC8AFC /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8388B4E5CED74D2E99AAF859 /* libPods.a */; };
 		6391C856199F9E39001AB9DB /* TMOHTTPTransactionItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 6391C855199F9E39001AB9DB /* TMOHTTPTransactionItem.m */; };
 		6391C85C19A070D3001AB9DB /* TMOHTTPPromise.m in Sources */ = {isa = PBXBuildFile; fileRef = 6391C85B19A070D3001AB9DB /* TMOHTTPPromise.m */; };
@@ -48,8 +47,6 @@
 		9225637818FD2397005BD532 /* TMOSmartyMoreViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9225637618FD2397005BD532 /* TMOSmartyMoreViewController.m */; };
 		9225637918FD2397005BD532 /* TMOSmartyMoreViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9225637718FD2397005BD532 /* TMOSmartyMoreViewController.xib */; };
 		9225637C18FD2587005BD532 /* TMOStringDemoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9225637B18FD2587005BD532 /* TMOStringDemoViewController.m */; };
-		922F608A193490DB005AD787 /* TMOKVDB.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 2EE8D85418EC075600405406 /* TMOKVDB.h */; };
-		922F608B193490DB005AD787 /* TMOKVDB.m in CopyFiles */ = {isa = PBXBuildFile; fileRef = 2EE8D85518EC075600405406 /* TMOKVDB.m */; };
 		922F608E193490DB005AD787 /* TMOHTTPManager.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 2E9DCB5718E94EED00C140A7 /* TMOHTTPManager.h */; };
 		922F608F193490DB005AD787 /* TMOHTTPManager.m in CopyFiles */ = {isa = PBXBuildFile; fileRef = 2E9DCB5818E94EED00C140A7 /* TMOHTTPManager.m */; };
 		922F6090193490DB005AD787 /* TMOHTTPResult.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 2E19538818EA8DAF00E1F463 /* TMOHTTPResult.h */; };
@@ -123,8 +120,6 @@
 				92C13F831946D58200F6566A /* UIButton+TMOButton.h in CopyFiles */,
 				92C13F841946D58200F6566A /* UIButton+TMOButton.m in CopyFiles */,
 				922F60AA19349104005AD787 /* TModel.php in CopyFiles */,
-				922F608A193490DB005AD787 /* TMOKVDB.h in CopyFiles */,
-				922F608B193490DB005AD787 /* TMOKVDB.m in CopyFiles */,
 				922F608E193490DB005AD787 /* TMOHTTPManager.h in CopyFiles */,
 				922F608F193490DB005AD787 /* TMOHTTPManager.m in CopyFiles */,
 				922F6090193490DB005AD787 /* TMOHTTPResult.h in CopyFiles */,
@@ -176,8 +171,6 @@
 		2E8CAA2418E93E5F0047D335 /* TeemoV2Tests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TeemoV2Tests.m; sourceTree = "<group>"; };
 		2E9DCB5718E94EED00C140A7 /* TMOHTTPManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TMOHTTPManager.h; sourceTree = "<group>"; };
 		2E9DCB5818E94EED00C140A7 /* TMOHTTPManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TMOHTTPManager.m; sourceTree = "<group>"; };
-		2EE8D85418EC075600405406 /* TMOKVDB.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TMOKVDB.h; sourceTree = "<group>"; };
-		2EE8D85518EC075600405406 /* TMOKVDB.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TMOKVDB.m; sourceTree = "<group>"; };
 		6391C854199F9E39001AB9DB /* TMOHTTPTransactionItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TMOHTTPTransactionItem.h; sourceTree = "<group>"; };
 		6391C855199F9E39001AB9DB /* TMOHTTPTransactionItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TMOHTTPTransactionItem.m; sourceTree = "<group>"; };
 		6391C85A19A070D3001AB9DB /* TMOHTTPPromise.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TMOHTTPPromise.h; sourceTree = "<group>"; };
@@ -414,8 +407,6 @@
 		2E8CAA3118E947DC0047D335 /* DataKit */ = {
 			isa = PBXGroup;
 			children = (
-				2EE8D85418EC075600405406 /* TMOKVDB.h */,
-				2EE8D85518EC075600405406 /* TMOKVDB.m */,
 				F0450F4219A86C5300A03FE3 /* TMOLevelDBQueue.h */,
 				F0450F4319A86C5300A03FE3 /* TMOLevelDBQueue.m */,
 			);
@@ -762,7 +753,6 @@
 				F0CC8B2B198C7375004C3587 /* UIView+TMOSmarty.m in Sources */,
 				F0F60D631968F2A6003FD46A /* TMOTableDataTableViewController.m in Sources */,
 				6391C85C19A070D3001AB9DB /* TMOHTTPPromise.m in Sources */,
-				2EE8D85618EC075600405406 /* TMOKVDB.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

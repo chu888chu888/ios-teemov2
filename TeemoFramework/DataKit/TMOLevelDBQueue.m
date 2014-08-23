@@ -33,7 +33,7 @@ static NSMutableDictionary *pool;
         return pool[argPath];
     }
     else {
-        LevelDB *connection = [[LevelDB alloc] initWithPath:argPath andName:@"KVDB"];
+        LevelDB *connection = [[LevelDB alloc] initWithPath:argPath andName:@"kvdb"];
         TMOLevelDBQueue *poolItem = [[TMOLevelDBQueue alloc] initWithConnection:connection];
         [pool setObject:poolItem forKey:argPath];
         return poolItem;
@@ -119,6 +119,10 @@ static NSMutableDictionary *pool;
     return [self overrideObjectForKey:argKey];
 }
 
+- (id)valueForKey:(NSString *)key {
+    return [self objectForKey:key];
+}
+
 - (id)overrideObjectForKey:(NSString *)argKey {
     id object = [self.connection objectForKey:argKey];
     if ([object isKindOfClass:[NSDictionary class]]) {
@@ -181,7 +185,7 @@ static NSMutableDictionary *pool;
     dispatch_sync(_queue, ^{
         NSString *thePath = [self.connection.path copy];
         [self.connection deleteDatabaseFromDisk];
-        self.connection = [[LevelDB alloc] initWithPath:thePath andName:@"KVDB"];
+        self.connection = [[LevelDB alloc] initWithPath:thePath andName:@"kvdb"];
         [self setupCoder];
     });
 }
