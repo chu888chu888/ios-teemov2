@@ -61,6 +61,7 @@ static NSMutableDictionary *pool;
         _queue = dispatch_queue_create([[NSString stringWithFormat:@"kvdb.%@", self] UTF8String], NULL);
         self.connection = argConnection;
         [self setupCoder];
+        [NSThread detachNewThreadSelector:@selector(threadRemoveExpiredData) toTarget:self withObject:nil];
     }
     return self;
 }
@@ -93,7 +94,6 @@ static NSMutableDictionary *pool;
     else {
         expiredTimeNumber = [NSNumber numberWithInteger:[[NSDate date] timeIntervalSince1970]+argExpiredTime];
     }
-//    NSLog(@"%@",expiredTimeNumber);
     NSDictionary *dataDictionary = @{@"_Type": @"expired", @"object": argObject, @"expiredTime": expiredTimeNumber};
     [self setObject:dataDictionary forKey:argKey];
 }
@@ -139,6 +139,15 @@ static NSMutableDictionary *pool;
     }
 }
 
+- (void)threadRemoveExpiredData {
+    [self.connection enumerateKeysUsingBlock:^(LevelDBKey *key, BOOL *stop) {
+        NSString *stringKey = NSStringFromLevelDBKey(key);
+        if ([self objectForKey:stringKey] == nil) {
+            [self removeObjectForKey:stringKey];
+        }
+    }];
+}
+
 - (void)threadSetObject:(NSArray *)argObjects {
     dispatch_sync(_queue, ^{
         [self.connection setObject:argObjects[0] forKey:argObjects[1]];
@@ -148,6 +157,32 @@ static NSMutableDictionary *pool;
 - (void)threadRemoveObject:(NSString *)argKey {
     dispatch_sync(_queue, ^{
         [self.connection removeObjectForKey:argKey];
+    });
+}
+
+- (CGFloat)cacheSize {
+    long long totalSize = 0;
+    NSString *realPath = self.connection.path;
+    NSDirectoryEnumerator *enumerator = [[NSFileManager defaultManager] enumeratorAtPath:realPath];
+    for (NSString *itemPath in enumerator) {
+        NSDictionary *fileAttr = [[NSFileManager defaultManager] attributesOfItemAtPath:[realPath stringByAppendingString:itemPath] error:nil];
+        totalSize += [fileAttr[NSFileSize] integerValue];
+    }
+    return totalSize;
+}
+
+- (void)removeAllObjects {
+    dispatch_sync(_queue, ^{
+        [self.connection removeAllObjects];
+    });
+}
+
+- (void)releaseAllSpace {
+    dispatch_sync(_queue, ^{
+        NSString *thePath = [self.connection.path copy];
+        [self.connection deleteDatabaseFromDisk];
+        self.connection = [[LevelDB alloc] initWithPath:thePath andName:@"KVDB"];
+        [self setupCoder];
     });
 }
 
