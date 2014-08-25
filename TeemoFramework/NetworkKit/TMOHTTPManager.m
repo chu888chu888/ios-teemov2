@@ -9,7 +9,7 @@
 #import "TMOHTTPManager.h"
 #import <GTMHTTPFetcherService.h>
 #import <Reachability.h>
-#import "TMOKVDB.h"
+#import "TMOLevelDBQueue.h"
 #import <GTMHTTPUploadFetcher.h>
 
 NSString * const kTMONetworkCacheDatabaseKey = @"networkCache";
@@ -20,7 +20,7 @@ typedef void (^TMOReachabilityStatusBlock)(TMOReachabilityStatus status);
 
 @property (readwrite, nonatomic, copy) TMOReachabilityStatusBlock reachabilityStatusBlock;
 
-@property (nonatomic, weak) LevelDB *cacheDatabase;
+@property (nonatomic, weak) TMOLevelDBQueue *cacheDatabase;
 
 @end
 
@@ -63,17 +63,19 @@ typedef void (^TMOReachabilityStatusBlock)(TMOReachabilityStatus status);
     return self;
 }
 
-- (LevelDB *)cacheDatabase {
+- (TMOLevelDBQueue *)cacheDatabase {
     if (_cacheDatabase == nil) {
-        _cacheDatabase = [TMOKVDB customDatabase:kTMONetworkCacheDatabaseKey];
+        _cacheDatabase = [TMOLevelDBQueue databaseWithIdentifier:kTMONetworkCacheDatabaseKey
+                                                       directory:NSCachesDirectory];
     }
     return _cacheDatabase;
 }
 
 #pragma mark - Fetcher
 
-+ (void)simpleGet:(NSString *)argURL completionBlock:(void (^)(TMOHTTPResult *, NSError *))argBlock {
++ (GTMHTTPFetcher *)simpleGet:(NSString *)argURL completionBlock:(void (^)(TMOHTTPResult *, NSError *))argBlock {
     TMOHTTPManager *manager = [self shareInstance];
+    return
     [manager fetchWithURL:argURL
                  postInfo:nil
           timeoutInterval:(manager.reachabilityStatus == TMOReachabilityStatusWWAN ? 60 : 10)
@@ -85,10 +87,11 @@ typedef void (^TMOReachabilityStatusBlock)(TMOReachabilityStatus status);
           completionBlock:argBlock];
 }
 
-+ (void)simplePost:(NSString *)argURL
++ (GTMHTTPFetcher *)simplePost:(NSString *)argURL
           postInfo:(NSDictionary *)argPostInfo
    completionBlock:(void (^)(TMOHTTPResult *, NSError *))argBlock {
     TMOHTTPManager *manager = [self shareInstance];
+    return
     [manager fetchWithURL:argURL
                  postInfo:argPostInfo
           timeoutInterval:60
@@ -98,6 +101,60 @@ typedef void (^TMOReachabilityStatusBlock)(TMOReachabilityStatus status);
           fetcherPriority:TMOFetcherPriorityNormal
           comletionHandle:nil
           completionBlock:argBlock];
+}
+
++ (GTMHTTPFetcher *)simplePost:(NSString *)argURL
+          postData:(NSData *)argPostData
+   completionBlock:(void (^)(TMOHTTPResult *, NSError *))argBlock {
+    TMOHTTPManager *manager = [self shareInstance];
+    return
+    [manager fetchWithURL:argURL
+                 postData:argPostData
+          timeoutInterval:60
+                  headers:nil
+                    owner:nil
+                cacheTime:-1
+          fetcherPriority:TMOFetcherPriorityNormal
+          comletionHandle:nil
+          completionBlock:argBlock];
+}
+
+/**
+ *  串行事务请求
+ */
++ (void)simpleTransaction:(NSArray *)argTransactionItems
+          completionBlock:(void (^)(NSArray *itemsResult))argBlock {
+    NSMutableArray *mutableItems = [argTransactionItems mutableCopy];
+    NSMutableArray *mutableItemsResult = [NSMutableArray array];
+    [self transactionExecute:mutableItems
+      withMutableItemsResult:mutableItemsResult
+                   withBlock:argBlock];
+}
+
++ (void)transactionExecute:(NSMutableArray *)argMutableItems
+    withMutableItemsResult:(NSMutableArray *)argMutableItemsResult
+                 withBlock:(void (^)(NSArray *itemsResult))argBlock {
+    if ([argMutableItems count] > 0) {
+        TMOHTTPTransactionItem *item = [argMutableItems firstObject];
+        [item queryWithBlock:^(TMOHTTPResult *result, NSError *error) {
+            result.error = error;
+            [argMutableItemsResult addObject:result];
+            if (error != nil && item.stopTransactionIfError) {
+                //中断请求
+                argBlock([argMutableItemsResult copy]);
+            }
+            else {
+                //继续请求
+                [argMutableItems removeObjectAtIndex:0];
+                [self transactionExecute:argMutableItems
+                  withMutableItemsResult:argMutableItemsResult
+                               withBlock:argBlock];
+            }
+        }];
+    }
+    else {
+        argBlock([argMutableItemsResult copy]);
+    }
 }
 
 - (GTMHTTPFetcher *)fetchWithURL:(NSString *)argURL
@@ -261,40 +318,80 @@ completeUploadBlock:(void (^)(TMOHTTPResult *result, NSError *error))argBlock {
                      cacheTime:(NSTimeInterval)argCacheTime
                comletionHandle:(SEL)argHandle
                completionBlock:(void (^)(TMOHTTPResult *result, NSError *error))argBlock {
-    NSData *cacheData;
-    if (argCacheTime >= 0 &&
-        (cacheData = [self.cacheDatabase objectWithCacheForKey:argFetcher.mutableRequest.URL.absoluteString])) {    //判断是否存在缓存
-        TMOHTTPResult *result = [TMOHTTPResult createHTTPResultWithRequest:argFetcher.mutableRequest WithResponse:argFetcher.response WithData:cacheData];
-        if (argBlock) {
-            dispatch_async(dispatch_get_main_queue(), ^{
-                argBlock(result, nil);
-            });
-        }
-        if (argOwner && argHandle) {
-            dispatch_async(dispatch_get_main_queue(), ^{
-                //由于performSelector方法有可能出现内存泄露，所以使用下列语句替换
-                IMP imp = [argOwner methodForSelector:argHandle];
-                void (*func)(id, SEL, TMOHTTPResult *, NSError *) = (void *)imp;
-                func(argOwner, argHandle, result, nil);
-            });
-        }
-    } else {
+    NSURL *originalURL = [argFetcher.mutableRequest.URL copy];
+    if (argCacheTime >= 0) {
+        [self.cacheDatabase objectForKey:argFetcher.mutableRequest.URL.absoluteString withBlock:^(id object) {
+            if (object != nil) {
+                TMOHTTPResult *result = [TMOHTTPResult createHTTPResultWithRequest:argFetcher.mutableRequest WithResponse:argFetcher.response WithData:object];
+                result.originalURL = originalURL;
+                if (argBlock) {
+                    dispatch_async(dispatch_get_main_queue(), ^{
+                        argBlock(result, nil);
+                    });
+                }
+                if (argOwner && argHandle) {
+                    dispatch_async(dispatch_get_main_queue(), ^{
+                        //由于performSelector方法有可能出现内存泄露，所以使用下列语句替换
+                        IMP imp = [argOwner methodForSelector:argHandle];
+                        void (*func)(id, SEL, TMOHTTPResult *, NSError *) = (void *)imp;
+                        func(argOwner, argHandle, result, nil);
+                    });
+                }
+            }
+            else {
+                GTMHTTPFetcher __weak *fet = argFetcher;
+                if (self.hostDictionary != nil) {
+                    fet.mutableRequest = [self addHostToRequest:fet.mutableRequest];
+                }
+                [argFetcher beginFetchWithCompletionHandler:^(NSData *data, NSError *error) {
+                    TMOHTTPResult *result = [TMOHTTPResult createHTTPResultWithRequest:fet.mutableRequest WithResponse:fet.response WithData:data];
+                    result.originalURL = originalURL;
+                    dispatch_queue_t myDispatchQueue = dispatch_get_main_queue();
+                    dispatch_async(myDispatchQueue, ^{
+                        if (data && [fet.mutableRequest.HTTPMethod isEqualToString:@"GET"]) {
+                            if (argCacheTime < 0) {
+                                [self.cacheDatabase removeObjectForKey:originalURL.absoluteString];
+                                //缓存时间小于0表明需要清除缓存
+                            }
+                            else {
+                                [self.cacheDatabase setObject:data
+                                                       forKey:originalURL.absoluteString
+                                                  expiredTime:argCacheTime];
+                            }
+                        }
+                        if (argBlock) {
+                            argBlock(result, error);
+                        }
+                        if (argOwner && argHandle) {
+                            //由于performSelector方法有可能出现内存泄露，所以使用下列语句替换
+                            IMP imp = [argOwner methodForSelector:argHandle];
+                            void (*func)(id, SEL, TMOHTTPResult *, NSError *) = (void *)imp;
+                            func(argOwner, argHandle, result, error);
+                        }
+                    });
+                }];
+            }
+        }];
+    }
+    else {
         GTMHTTPFetcher __weak *fet = argFetcher;
         if (self.hostDictionary != nil) {
             fet.mutableRequest = [self addHostToRequest:fet.mutableRequest];
         }
         [argFetcher beginFetchWithCompletionHandler:^(NSData *data, NSError *error) {
             TMOHTTPResult *result = [TMOHTTPResult createHTTPResultWithRequest:fet.mutableRequest WithResponse:fet.response WithData:data];
+            result.originalURL = originalURL;
             dispatch_queue_t myDispatchQueue = dispatch_get_main_queue();
             dispatch_async(myDispatchQueue, ^{
                 if (data && [fet.mutableRequest.HTTPMethod isEqualToString:@"GET"]) {
                     if (argCacheTime < 0) {
-                        [self.cacheDatabase removeObjectWithCacheForKey:fet.mutableRequest.URL.absoluteString];//缓存时间小于0表明需要清除缓存
+                        [self.cacheDatabase removeObjectForKey:originalURL.absoluteString];
+                        //缓存时间小于0表明需要清除缓存
                     }
                     else {
                         [self.cacheDatabase setObject:data
-                                               forKey:fet.mutableRequest.URL.absoluteString
-                                            cacheTime:argCacheTime];
+                                               forKey:originalURL.absoluteString
+                                          expiredTime:argCacheTime];
                     }
                 }
                 if (argBlock) {
@@ -431,9 +528,10 @@ completeUploadBlock:(void (^)(TMOHTTPResult *result, NSError *error))argBlock {
             });
         }
     }];
-    
+    NSURL *originalURL = [fet.mutableRequest.URL copy];
     [argFetcher beginFetchWithCompletionHandler:^(NSData *data, NSError *error) {
         TMOHTTPResult *result = [TMOHTTPResult createHTTPResultWithRequest:fet.mutableRequest WithResponse:fet.response WithData:data];
+        result.originalURL = originalURL;
         dispatch_queue_t myDispatchQueue = dispatch_get_main_queue();
         dispatch_async(myDispatchQueue, ^{
             if (argBlock) {
@@ -488,15 +586,15 @@ completeUploadBlock:(void (^)(TMOHTTPResult *result, NSError *error))argBlock {
 #pragma mark - 与Http服务相关的支持方法
 
 - (long long)cacheSize {
-    return [TMOKVDB sizeOfPath:kTMONetworkCacheDatabaseKey];
+    return _cacheDatabase.cacheSize;
 }
 
 - (void)cleanAllCache {
-    [TMOKVDB closeAndReleaseSpace:kTMONetworkCacheDatabaseKey];
+    [_cacheDatabase releaseAllSpace];
 }
 
 - (void)cleanExpiredCache {
-    [self.cacheDatabase removeGarbage];
+    //no need
 }
 
 @end

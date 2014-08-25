@@ -11,7 +11,7 @@
 #import <SSKeychain.h>
 #import <RNEncryptor.h>
 #import <RNDecryptor.h>
-#import "TMOKVDB.h"
+#import "TMOLevelDBQueue.h"
 
 @interface TMOSecurity ()
 
@@ -75,10 +75,10 @@ static NSString *cachePath () {
     NSData *encodedData;
     NSString *cacheKey = [NSString stringWithFormat:@"com.duowan.security.%@", argIdentifier];
     if ([argSecurityArea isEqualToString:kTMOSecurityAreaDocument]) {
-        encodedData = [[TMOKVDB customDatabase:documentPath()] valueForKey:cacheKey];
+        encodedData = [[TMOLevelDBQueue databaseWithPath:documentPath()] valueForKey:cacheKey];
     }
     else if ([argSecurityArea isEqualToString:kTMOSecurityAreaCache]) {
-        encodedData = [[TMOKVDB customDatabase:cachePath()] valueForKey:cacheKey];
+        encodedData = [[TMOLevelDBQueue databaseWithPath:cachePath()] valueForKey:cacheKey];
     }
     NSData *decodedData = [encodedData dataByAESDecode];
     return decodedData;
@@ -100,13 +100,13 @@ static NSString *cachePath () {
 - (void)saveToSecurityDocumentWithIdentifier:(NSString *)argIdentifier {
     NSString *cacheKey = [NSString stringWithFormat:@"com.duowan.security.%@", argIdentifier];
     NSData *encodedData = [self saveToSecurityData];
-    [[TMOKVDB customDatabase:documentPath()] setObject:encodedData forKey:cacheKey];
+    [[TMOLevelDBQueue databaseWithPath:documentPath()] setObject:encodedData forKey:cacheKey];
 }
 
 - (void)saveToSecurityCacheWithIdentifier:(NSString *)argIdentifier {
     NSString *cacheKey = [NSString stringWithFormat:@"com.duowan.security.%@", argIdentifier];
     NSData *encodedData = [self saveToSecurityData];
-    [[TMOKVDB customDatabase:cachePath()] setObject:encodedData forKey:cacheKey];
+    [[TMOLevelDBQueue databaseWithPath:cachePath()] setObject:encodedData forKey:cacheKey];
 }
 
 - (NSData *)saveToSecurityData {

@@ -58,7 +58,7 @@
 #pragma makr - TableViewDelegate & Datasource
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     if (section == 0) {
-        return 4;
+        return 5;
     }
     else if (section == 1){
         return 2;
@@ -101,6 +101,10 @@
         else if (indexPath.row == 3) {
             [cell.textLabel setText:@"Tcp/Http"];
             [cell.detailTextLabel setText:@"上传文件"];
+        }
+        else if (indexPath.row == 4) {
+            [cell.textLabel setText:@"Tcp/Http"];
+            [cell.detailTextLabel setText:@"事务请求"];
         }
     }
     else if (indexPath.section == 1) {
@@ -200,6 +204,11 @@
         }
         else if (indexPath.row == 3) {
             [[[UIAlertView alloc] initWithTitle:@"上传功能Demo还未做好" message:@"不过，上传功能实际上是可用的" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil] show];
+        }
+        else if (indexPath.row == 4) {
+            TMONetworkDemoViewController *networkDemoViewController = [[TMONetworkDemoViewController alloc] initWithNibName:nil bundle:nil];
+            [self.navigationController pushViewController:networkDemoViewController animated:YES];
+            [networkDemoViewController demo5];
         }
     }
     else if (indexPath.section == 1) {

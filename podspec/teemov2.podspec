@@ -33,9 +33,6 @@ Pod::Spec.new do |s|
     ss.dependency "Reachability", "~> 3.1.1"
     ss.dependency "MBProgressHUD", "~> 0.8"
     ss.dependency "Objective-LevelDB", "~> 2.0.6"
-    ss.dependency "RNCryptor", "~> 2.2"
-    ss.dependency "SSKeychain"
-    ss.dependency "TMOTableView"
   end
 
   s.subspec 'TMOFMDB' do |ss|
@@ -56,6 +53,15 @@ Pod::Spec.new do |s|
     ss.dependency "NimbusKit-AttributedLabel"
     ss.dependency "teemov2/Core"
   end
+  
+  s.subspec 'TMOSecurity' do |ss|
+    ss.platform     = :ios, "5.0"
+    ss.source_files = "TeemoSubmodule/TMOSecurity/*.{h,m}"
+    ss.dependency "teemov2/Core"
+    ss.dependency "SSKeychain"
+    ss.dependency "RNCryptor", "~> 2.2"
+  end
+
 
 
 end

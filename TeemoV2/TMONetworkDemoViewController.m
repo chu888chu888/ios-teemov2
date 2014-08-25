@@ -104,6 +104,34 @@
     
 }
 
+//串行队列请求
+- (void)demo5 {
+    
+    TMOHTTPTransactionItem *demoItem1 = [[TMOHTTPTransactionItem alloc] init];
+    demoItem1.URLString = @"http://api.map.baidu.com/geocoder?address=%E4%B8%8A%E5%9C%B0%E5%8D%81%E8%A1%9710%E5%8F%B7&output=json&key=37492c0ee6f924cb5e934fa08c6b1676";
+    TMOHTTPTransactionItem *demoItem2 = [[TMOHTTPTransactionItem alloc] init];
+    demoItem2.URLString = @"http://api.map.baiduerror.com/geocoder?address=%E4%B8%8A%E5%9C%B0%E5%8D%81%E8%A1%9710%E5%8F%B7&output=json&key=37492c0ee6f924cb5e934fa08c6b1676";
+    TMOHTTPTransactionItem *demoItem3 = [[TMOHTTPTransactionItem alloc] init];
+    demoItem3.URLString = @"http://api.map.baidu.com/geocoder?address=%E4%B8%8A%E5%9C%B0%E5%8D%81%E8%A1%9710%E5%8F%B7&output=json&key=37492c0ee6f924cb5e934fa08c6b1676";
+    TMOHTTPTransactionItem *demoItem4 = [[TMOHTTPTransactionItem alloc] init];
+    demoItem4.URLString = @"http://api.map.baidu.com/geocoder?address=%E4%B8%8A%E5%9C%B0%E5%8D%81%E8%A1%9710%E5%8F%B7&output=json&key=37492c0ee6f924cb5e934fa08c6b1676";
+//    demoItem2.stopTransactionIfError = YES;
+    
+    NSArray *querys = @[demoItem1, demoItem2, demoItem3, demoItem4];
+    
+    [TMOHTTPManager simpleTransaction:querys completionBlock:^(NSArray *itemsResult) {
+        for (TMOHTTPResult *result in itemsResult) {
+            if (result.error == nil) {
+                NSLog(@"%@,请求成功", result.request.URL);
+            }
+            else {
+                NSLog(@"%@,请求失败,失败原因:%@", result.request.URL, result.error);
+            }
+        }
+    }];
+    
+}
+
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];

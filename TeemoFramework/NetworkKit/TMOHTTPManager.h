@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "TMOHTTPTransactionItem.h"
 #import "TMOHTTPResult.h"
 #import <GTMHTTPFetcher.h>
 
@@ -119,20 +120,41 @@ typedef enum {
  *  @param argURL   GET请求的URL
  *  @param argBlock 请求完成回调块
  */
-+ (void)simpleGet:(NSString *)argURL
++ (GTMHTTPFetcher *)simpleGet:(NSString *)argURL
   completionBlock:(void (^)(TMOHTTPResult *result, NSError *error))argBlock;
 
 /**
- *  发起一步异步POST请求；
+ *  发起异步POST请求；
  *  超时时间统一为60秒；
  *
  *  @param argURL      POST请求的URL
  *  @param argPostInfo POST请求的参数，NSDictionary
  *  @param argBlock    请求完成回调块
  */
-+ (void)simplePost:(NSString *)argURL
++ (GTMHTTPFetcher *)simplePost:(NSString *)argURL
           postInfo:(NSDictionary *)argPostInfo
    completionBlock:(void (^)(TMOHTTPResult *result, NSError *error))argBlock;
+
+/**
+ *  发起异步POST请求
+ *  超时时间统一为60秒
+ *
+ *  @param argURL      POST请求的URL
+ *  @param argPostData POST请求的data
+ *  @param argBlock    请求完成回调块
+ */
++ (GTMHTTPFetcher *)simplePost:(NSString *)argURL
+          postData:(NSData *)argPostData
+   completionBlock:(void (^)(TMOHTTPResult *, NSError *))argBlock;
+
+/**
+ *  发起异步事务请求
+ *
+ *  @param argTransactionItems 事务组
+ *  @param argBlock            完成事务后的回调
+ */
++ (void)simpleTransaction:(NSArray *)argTransactionItems
+          completionBlock:(void (^)(NSArray *itemsResult))argBlock;
 
 /**
  *  发起异步请求

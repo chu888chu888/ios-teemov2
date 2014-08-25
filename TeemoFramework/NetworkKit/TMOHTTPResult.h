@@ -11,6 +11,11 @@
 @interface TMOHTTPResult : NSObject
 
 /**
+ *  原始的请求URL，此URL不会因目标302转向而改变
+ */
+@property (nonatomic, strong) NSURL *originalURL;
+
+/**
  *  请求的Request，你可以在这里获取本次Request有关的信息
  */
 @property (nonatomic, strong, readonly) NSURLRequest *request;
@@ -34,6 +39,11 @@
  *  将获取得到的JSON文本，转换为对象
  */
 @property (nonatomic, strong, readonly) id JSONObj;
+
+/**
+ *  此处的Error只有在transaction的情况下才会生效，正常情况下，请勿使用
+ */
+@property (nonatomic, strong) NSError *error;
 
 /**
  *  获取一个结果对象，只能通过本方法获取实例对象

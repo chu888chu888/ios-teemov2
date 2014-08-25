@@ -23,16 +23,14 @@
 		2E8CAA2318E93E5F0047D335 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 2E8CAA2118E93E5F0047D335 /* InfoPlist.strings */; };
 		2E8CAA2518E93E5F0047D335 /* TeemoV2Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = 2E8CAA2418E93E5F0047D335 /* TeemoV2Tests.m */; };
 		2E9DCB5918E94EED00C140A7 /* TMOHTTPManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 2E9DCB5818E94EED00C140A7 /* TMOHTTPManager.m */; };
-		2EE8D85618EC075600405406 /* TMOKVDB.m in Sources */ = {isa = PBXBuildFile; fileRef = 2EE8D85518EC075600405406 /* TMOKVDB.m */; };
 		35439A44345B41ED85CC8AFC /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8388B4E5CED74D2E99AAF859 /* libPods.a */; };
+		6391C856199F9E39001AB9DB /* TMOHTTPTransactionItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 6391C855199F9E39001AB9DB /* TMOHTTPTransactionItem.m */; };
+		6391C85C19A070D3001AB9DB /* TMOHTTPPromise.m in Sources */ = {isa = PBXBuildFile; fileRef = 6391C85B19A070D3001AB9DB /* TMOHTTPPromise.m */; };
 		7BA56A9D871F4A05AD77A57A /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8388B4E5CED74D2E99AAF859 /* libPods.a */; };
 		920F0F2118E94DB900B9E953 /* TMOUIKitCore.m in Sources */ = {isa = PBXBuildFile; fileRef = 920F0F2018E94DB900B9E953 /* TMOUIKitCore.m */; };
 		920F0F2818E9625700B9E953 /* UIColor+TMOColor.m in Sources */ = {isa = PBXBuildFile; fileRef = 920F0F2718E9625700B9E953 /* UIColor+TMOColor.m */; };
 		92170D651907BD1300EB9ED9 /* TMOTextKitViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 92170D631907BD1300EB9ED9 /* TMOTextKitViewController.m */; };
 		92170D661907BD1300EB9ED9 /* TMOTextKitViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 92170D641907BD1300EB9ED9 /* TMOTextKitViewController.xib */; };
-		921C01341947F3B800BB558D /* TMOSecurity.m in Sources */ = {isa = PBXBuildFile; fileRef = 921C01331947F3B800BB558D /* TMOSecurity.m */; };
-		921C01351948273A00BB558D /* TMOSecurity.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 921C01321947F3B800BB558D /* TMOSecurity.h */; };
-		921C01361948273A00BB558D /* TMOSecurity.m in CopyFiles */ = {isa = PBXBuildFile; fileRef = 921C01331947F3B800BB558D /* TMOSecurity.m */; };
 		9225635D18FCD1FA005BD532 /* TMODemoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9225635C18FCD1FA005BD532 /* TMODemoViewController.m */; };
 		9225635F18FCD209005BD532 /* TMODemoViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9225635E18FCD209005BD532 /* TMODemoViewController.xib */; };
 		9225636318FCD886005BD532 /* TMONetworkDemoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9225636118FCD886005BD532 /* TMONetworkDemoViewController.m */; };
@@ -46,8 +44,6 @@
 		9225637818FD2397005BD532 /* TMOSmartyMoreViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9225637618FD2397005BD532 /* TMOSmartyMoreViewController.m */; };
 		9225637918FD2397005BD532 /* TMOSmartyMoreViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9225637718FD2397005BD532 /* TMOSmartyMoreViewController.xib */; };
 		9225637C18FD2587005BD532 /* TMOStringDemoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9225637B18FD2587005BD532 /* TMOStringDemoViewController.m */; };
-		922F608A193490DB005AD787 /* TMOKVDB.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 2EE8D85418EC075600405406 /* TMOKVDB.h */; };
-		922F608B193490DB005AD787 /* TMOKVDB.m in CopyFiles */ = {isa = PBXBuildFile; fileRef = 2EE8D85518EC075600405406 /* TMOKVDB.m */; };
 		922F608E193490DB005AD787 /* TMOHTTPManager.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 2E9DCB5718E94EED00C140A7 /* TMOHTTPManager.h */; };
 		922F608F193490DB005AD787 /* TMOHTTPManager.m in CopyFiles */ = {isa = PBXBuildFile; fileRef = 2E9DCB5818E94EED00C140A7 /* TMOHTTPManager.m */; };
 		922F6090193490DB005AD787 /* TMOHTTPResult.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 2E19538818EA8DAF00E1F463 /* TMOHTTPResult.h */; };
@@ -89,6 +85,8 @@
 		92E6DA9918ED4479002CC61F /* TMOKVDBTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 92E6DA9818ED4479002CC61F /* TMOKVDBTests.m */; };
 		AB8F8457194A9CB600290CD4 /* NSArray+TMODuplicate.m in Sources */ = {isa = PBXBuildFile; fileRef = AB8F8456194A9CB600290CD4 /* NSArray+TMODuplicate.m */; };
 		AB8F845B194A9D8400290CD4 /* TMOBaseModel.m in Sources */ = {isa = PBXBuildFile; fileRef = AB8F845A194A9D8400290CD4 /* TMOBaseModel.m */; };
+		F0450F4419A86C5300A03FE3 /* TMOLevelDBQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = F0450F4319A86C5300A03FE3 /* TMOLevelDBQueue.m */; };
+		F04B4B0119A9FAEB003C9D44 /* TMOSecurity.m in Sources */ = {isa = PBXBuildFile; fileRef = F04B4B0019A9FAEB003C9D44 /* TMOSecurity.m */; };
 		F0CC8B27198C7375004C3587 /* Smarty.m in Sources */ = {isa = PBXBuildFile; fileRef = F0CC8B1E198C7375004C3587 /* Smarty.m */; };
 		F0CC8B28198C7375004C3587 /* SmartyBinder.m in Sources */ = {isa = PBXBuildFile; fileRef = F0CC8B20198C7375004C3587 /* SmartyBinder.m */; };
 		F0CC8B29198C7375004C3587 /* SmartyFunctions.m in Sources */ = {isa = PBXBuildFile; fileRef = F0CC8B22198C7375004C3587 /* SmartyFunctions.m */; };
@@ -115,13 +113,9 @@
 			dstPath = src;
 			dstSubfolderSpec = 16;
 			files = (
-				921C01351948273A00BB558D /* TMOSecurity.h in CopyFiles */,
-				921C01361948273A00BB558D /* TMOSecurity.m in CopyFiles */,
 				92C13F831946D58200F6566A /* UIButton+TMOButton.h in CopyFiles */,
 				92C13F841946D58200F6566A /* UIButton+TMOButton.m in CopyFiles */,
 				922F60AA19349104005AD787 /* TModel.php in CopyFiles */,
-				922F608A193490DB005AD787 /* TMOKVDB.h in CopyFiles */,
-				922F608B193490DB005AD787 /* TMOKVDB.m in CopyFiles */,
 				922F608E193490DB005AD787 /* TMOHTTPManager.h in CopyFiles */,
 				922F608F193490DB005AD787 /* TMOHTTPManager.m in CopyFiles */,
 				922F6090193490DB005AD787 /* TMOHTTPResult.h in CopyFiles */,
@@ -173,8 +167,10 @@
 		2E8CAA2418E93E5F0047D335 /* TeemoV2Tests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TeemoV2Tests.m; sourceTree = "<group>"; };
 		2E9DCB5718E94EED00C140A7 /* TMOHTTPManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TMOHTTPManager.h; sourceTree = "<group>"; };
 		2E9DCB5818E94EED00C140A7 /* TMOHTTPManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TMOHTTPManager.m; sourceTree = "<group>"; };
-		2EE8D85418EC075600405406 /* TMOKVDB.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TMOKVDB.h; sourceTree = "<group>"; };
-		2EE8D85518EC075600405406 /* TMOKVDB.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TMOKVDB.m; sourceTree = "<group>"; };
+		6391C854199F9E39001AB9DB /* TMOHTTPTransactionItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TMOHTTPTransactionItem.h; sourceTree = "<group>"; };
+		6391C855199F9E39001AB9DB /* TMOHTTPTransactionItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TMOHTTPTransactionItem.m; sourceTree = "<group>"; };
+		6391C85A19A070D3001AB9DB /* TMOHTTPPromise.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TMOHTTPPromise.h; sourceTree = "<group>"; };
+		6391C85B19A070D3001AB9DB /* TMOHTTPPromise.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TMOHTTPPromise.m; sourceTree = "<group>"; };
 		6BD09E4E614B4FC1A7EFC90E /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
 		8388B4E5CED74D2E99AAF859 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		920F0F1F18E94DB900B9E953 /* TMOUIKitCore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TMOUIKitCore.h; sourceTree = "<group>"; };
@@ -185,8 +181,6 @@
 		92170D621907BD1300EB9ED9 /* TMOTextKitViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TMOTextKitViewController.h; sourceTree = "<group>"; };
 		92170D631907BD1300EB9ED9 /* TMOTextKitViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TMOTextKitViewController.m; sourceTree = "<group>"; };
 		92170D641907BD1300EB9ED9 /* TMOTextKitViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TMOTextKitViewController.xib; sourceTree = "<group>"; };
-		921C01321947F3B800BB558D /* TMOSecurity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TMOSecurity.h; sourceTree = "<group>"; };
-		921C01331947F3B800BB558D /* TMOSecurity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TMOSecurity.m; sourceTree = "<group>"; };
 		9225635B18FCD1FA005BD532 /* TMODemoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TMODemoViewController.h; sourceTree = "<group>"; };
 		9225635C18FCD1FA005BD532 /* TMODemoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TMODemoViewController.m; sourceTree = "<group>"; };
 		9225635E18FCD209005BD532 /* TMODemoViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TMODemoViewController.xib; sourceTree = "<group>"; };
@@ -236,6 +230,10 @@
 		AB8F8456194A9CB600290CD4 /* NSArray+TMODuplicate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSArray+TMODuplicate.m"; sourceTree = "<group>"; };
 		AB8F8459194A9D8400290CD4 /* TMOBaseModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TMOBaseModel.h; sourceTree = "<group>"; };
 		AB8F845A194A9D8400290CD4 /* TMOBaseModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TMOBaseModel.m; sourceTree = "<group>"; };
+		F0450F4219A86C5300A03FE3 /* TMOLevelDBQueue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TMOLevelDBQueue.h; sourceTree = "<group>"; };
+		F0450F4319A86C5300A03FE3 /* TMOLevelDBQueue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TMOLevelDBQueue.m; sourceTree = "<group>"; };
+		F04B4AFF19A9FAEB003C9D44 /* TMOSecurity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TMOSecurity.h; sourceTree = "<group>"; };
+		F04B4B0019A9FAEB003C9D44 /* TMOSecurity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TMOSecurity.m; sourceTree = "<group>"; };
 		F0CC8B1D198C7375004C3587 /* Smarty.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Smarty.h; sourceTree = "<group>"; };
 		F0CC8B1E198C7375004C3587 /* Smarty.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Smarty.m; sourceTree = "<group>"; };
 		F0CC8B1F198C7375004C3587 /* SmartyBinder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SmartyBinder.h; sourceTree = "<group>"; };
@@ -405,8 +403,8 @@
 		2E8CAA3118E947DC0047D335 /* DataKit */ = {
 			isa = PBXGroup;
 			children = (
-				2EE8D85418EC075600405406 /* TMOKVDB.h */,
-				2EE8D85518EC075600405406 /* TMOKVDB.m */,
+				F0450F4219A86C5300A03FE3 /* TMOLevelDBQueue.h */,
+				F0450F4319A86C5300A03FE3 /* TMOLevelDBQueue.m */,
 			);
 			path = DataKit;
 			sourceTree = "<group>";
@@ -418,6 +416,10 @@
 				2E9DCB5818E94EED00C140A7 /* TMOHTTPManager.m */,
 				2E19538818EA8DAF00E1F463 /* TMOHTTPResult.h */,
 				2E19538918EA8DAF00E1F463 /* TMOHTTPResult.m */,
+				6391C854199F9E39001AB9DB /* TMOHTTPTransactionItem.h */,
+				6391C855199F9E39001AB9DB /* TMOHTTPTransactionItem.m */,
+				6391C85A19A070D3001AB9DB /* TMOHTTPPromise.h */,
+				6391C85B19A070D3001AB9DB /* TMOHTTPPromise.m */,
 			);
 			path = NetworkKit;
 			sourceTree = "<group>";
@@ -432,8 +434,6 @@
 				92BFF83E18F638E700A13FD8 /* NSString+TMOString.m */,
 				92C2AFF318F69375007EF9C3 /* TMOObjectVerifier.h */,
 				92C2AFF418F69375007EF9C3 /* TMOObjectVerifier.m */,
-				921C01321947F3B800BB558D /* TMOSecurity.h */,
-				921C01331947F3B800BB558D /* TMOSecurity.m */,
 				AB8F8455194A9CB600290CD4 /* NSArray+TMODuplicate.h */,
 				AB8F8456194A9CB600290CD4 /* NSArray+TMODuplicate.m */,
 			);
@@ -493,6 +493,7 @@
 		92DFBF8219876E9700E67D65 /* TeemoSubmodule */ = {
 			isa = PBXGroup;
 			children = (
+				F04B4AFE19A9FAEB003C9D44 /* TMOSecurity */,
 				92493E24198F57A100DF07D1 /* TMOAttributedLabel */,
 				F0CC8B1C198C7375004C3587 /* TMOSmarty */,
 				92DFBF8319876E9700E67D65 /* TMOFMDB */,
@@ -516,6 +517,15 @@
 				AB8F845A194A9D8400290CD4 /* TMOBaseModel.m */,
 			);
 			path = Models;
+			sourceTree = "<group>";
+		};
+		F04B4AFE19A9FAEB003C9D44 /* TMOSecurity */ = {
+			isa = PBXGroup;
+			children = (
+				F04B4AFF19A9FAEB003C9D44 /* TMOSecurity.h */,
+				F04B4B0019A9FAEB003C9D44 /* TMOSecurity.m */,
+			);
+			path = TMOSecurity;
 			sourceTree = "<group>";
 		};
 		F0CC8B1C198C7375004C3587 /* TMOSmarty */ = {
@@ -714,7 +724,6 @@
 				9225635D18FCD1FA005BD532 /* TMODemoViewController.m in Sources */,
 				9225637818FD2397005BD532 /* TMOSmartyMoreViewController.m in Sources */,
 				9225636A18FD1413005BD532 /* TMOFMDBDemoViewController.m in Sources */,
-				921C01341947F3B800BB558D /* TMOSecurity.m in Sources */,
 				F0CC8B29198C7375004C3587 /* SmartyFunctions.m in Sources */,
 				2E19538A18EA8DAF00E1F463 /* TMOHTTPResult.m in Sources */,
 				927C8012194FF23F004DD8BC /* TMOTableDataViewController.m in Sources */,
@@ -736,15 +745,18 @@
 				F0CC8B2A198C7375004C3587 /* TMOSmarty.m in Sources */,
 				920F0F2818E9625700B9E953 /* UIColor+TMOColor.m in Sources */,
 				2E8CAA0A18E93E5F0047D335 /* TMOAppDelegate.m in Sources */,
+				F04B4B0119A9FAEB003C9D44 /* TMOSecurity.m in Sources */,
 				92493E27198F57CF00DF07D1 /* NIAttributedLabel+TagString.m in Sources */,
 				92BFF83F18F638E700A13FD8 /* NSString+TMOString.m in Sources */,
 				9225637C18FD2587005BD532 /* TMOStringDemoViewController.m in Sources */,
 				F0CC8B27198C7375004C3587 /* Smarty.m in Sources */,
 				92DFBF8619876E9700E67D65 /* TMOFMDB.m in Sources */,
 				F0CC8B28198C7375004C3587 /* SmartyBinder.m in Sources */,
+				6391C856199F9E39001AB9DB /* TMOHTTPTransactionItem.m in Sources */,
+				F0450F4419A86C5300A03FE3 /* TMOLevelDBQueue.m in Sources */,
 				F0CC8B2B198C7375004C3587 /* UIView+TMOSmarty.m in Sources */,
 				F0F60D631968F2A6003FD46A /* TMOTableDataTableViewController.m in Sources */,
-				2EE8D85618EC075600405406 /* TMOKVDB.m in Sources */,
+				6391C85C19A070D3001AB9DB /* TMOHTTPPromise.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
