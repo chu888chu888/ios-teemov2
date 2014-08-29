@@ -171,6 +171,11 @@ typedef void (^TMOReachabilityStatusBlock)(TMOReachabilityStatus status);
     [fetcher setServicePriority:argPriority];
     [fetcher.mutableRequest setTimeoutInterval:argTimeoutInterval];
     
+    // 添加请求头信息
+    if (argHeaders && [argHeaders isKindOfClass:[NSDictionary class]]) {
+        [fetcher.mutableRequest setAllHTTPHeaderFields:argHeaders];
+    }
+    
     NSString *postInfoStr = nil;
     if (argPostInfo) {
         NSMutableArray *tempArray = [NSMutableArray array];
@@ -181,7 +186,6 @@ typedef void (^TMOReachabilityStatusBlock)(TMOReachabilityStatus status);
         }];
         postInfoStr = [tempArray componentsJoinedByString:@"&"];
         fetcher.postData = [postInfoStr dataUsingEncoding:NSUTF8StringEncoding];
-        [fetcher.mutableRequest setAllHTTPHeaderFields:argHeaders];
         if(![fetcher.mutableRequest valueForHTTPHeaderField:@"Content-Type"]){
             NSString *charset = (NSString *)CFStringConvertEncodingToIANACharSetName(CFStringConvertNSStringEncodingToEncoding(NSUTF8StringEncoding));
             [fetcher.mutableRequest setValue:[NSString stringWithFormat:@"application/x-www-form-urlencoded; charset=%@", charset] forHTTPHeaderField:@"Content-Type"];
@@ -205,9 +209,13 @@ typedef void (^TMOReachabilityStatusBlock)(TMOReachabilityStatus status);
     [fetcher setServicePriority:argPriority];
     [fetcher.mutableRequest setTimeoutInterval:argTimeoutInterval];
     
+    // 添加请求头信息
+    if (argHeaders && [argHeaders isKindOfClass:[NSDictionary class]]) {
+        [fetcher.mutableRequest setAllHTTPHeaderFields:argHeaders];
+    }
+    
     if (argPostData) {
         fetcher.postData = argPostData;
-        [fetcher.mutableRequest setAllHTTPHeaderFields:argHeaders];
         if(![fetcher.mutableRequest valueForHTTPHeaderField:@"Content-Type"]){
             NSString *charset = (NSString *)CFStringConvertEncodingToIANACharSetName(CFStringConvertNSStringEncodingToEncoding(NSUTF8StringEncoding));
             [fetcher.mutableRequest setValue:[NSString stringWithFormat:@"application/x-www-form-urlencoded; charset=%@", charset] forHTTPHeaderField:@"Content-Type"];
@@ -233,6 +241,12 @@ typedef void (^TMOReachabilityStatusBlock)(TMOReachabilityStatus status);
     GTMHTTPFetcher *fetcher = [self getDownloadFetcherWithURL:argURL];
     fetcher.downloadPath = argPath;
     [fetcher.mutableRequest setTimeoutInterval:argTimeoutInterval];
+    
+    // 添加请求头信息
+    if (argHeaders && [argHeaders isKindOfClass:[NSDictionary class]]) {
+        [fetcher.mutableRequest setAllHTTPHeaderFields:argHeaders];
+    }
+    
     NSString *postInfoStr = nil;
     if (argPostInfo) {
         NSMutableArray *tempArray = [NSMutableArray array];
@@ -243,7 +257,6 @@ typedef void (^TMOReachabilityStatusBlock)(TMOReachabilityStatus status);
         }];
         postInfoStr = [tempArray componentsJoinedByString:@"&"];
         fetcher.postData = [postInfoStr dataUsingEncoding:NSUTF8StringEncoding];
-        [fetcher.mutableRequest setAllHTTPHeaderFields:argHeaders];
         if(![fetcher.mutableRequest valueForHTTPHeaderField:@"Content-Type"]){
             NSString *charset = (NSString *)CFStringConvertEncodingToIANACharSetName(CFStringConvertNSStringEncodingToEncoding(NSUTF8StringEncoding));
             [fetcher.mutableRequest setValue:[NSString stringWithFormat:@"application/x-www-form-urlencoded; charset=%@", charset] forHTTPHeaderField:@"Content-Type"];
