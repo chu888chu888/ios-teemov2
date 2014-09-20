@@ -29,15 +29,19 @@ static NSMutableDictionary *pool;
 }
 
 + (TMOLevelDBQueue *)databaseWithPath:(NSString *)argPath {
-    if ([pool[argPath] isKindOfClass:[TMOLevelDBQueue class]]) {
-        return pool[argPath];
+    if ([pool[argPath] isKindOfClass:[TMOLevelDBQueue class]] &&
+        ![[pool[argPath] connection] closed]) {
+        if (![[NSFileManager defaultManager] fileExistsAtPath:argPath]) {
+            [[pool[argPath] connection] close];//Handle cache clean by system.
+        }
+        else {
+            return pool[argPath];
+        }
     }
-    else {
-        LevelDB *connection = [[LevelDB alloc] initWithPath:argPath andName:@"kvdb"];
-        TMOLevelDBQueue *poolItem = [[TMOLevelDBQueue alloc] initWithConnection:connection];
-        [pool setObject:poolItem forKey:argPath];
-        return poolItem;
-    }
+    LevelDB *connection = [[LevelDB alloc] initWithPath:argPath andName:@"kvdb"];
+    TMOLevelDBQueue *poolItem = [[TMOLevelDBQueue alloc] initWithConnection:connection];
+    [pool setObject:poolItem forKey:argPath];
+    return poolItem;
 }
 
 + (TMOLevelDBQueue *)databaseWithIdentifier:(NSString *)argIdentifier directory:(NSSearchPathDirectory)argDirectory {
