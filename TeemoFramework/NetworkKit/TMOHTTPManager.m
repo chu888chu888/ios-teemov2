@@ -564,20 +564,12 @@ completeUploadBlock:(void (^)(TMOHTTPResult *result, NSError *error))argBlock {
 
 - (void)reachabilityChanged:(NSNotification *)notification {
     if (![_fetcherReachability isReachable]) {
-        self.reachabilityStatus = TMOReachabilityStatusNoNetWork;
         _isNetWorkOK = NO;
     } else {
         _isNetWorkOK = YES;
     }
-    if ([_fetcherReachability isReachableViaWiFi]) {
-        self.reachabilityStatus = TMOReachabilityStatusWiFi;
-    }
-    if ([_fetcherReachability isReachableViaWWAN]) {
-        self.reachabilityStatus = TMOReachabilityStatusWWAN;
-    }
-    TMOReachabilityStatus status = _reachabilityStatus;
     if (self.reachabilityStatusBlock) {
-        self.reachabilityStatusBlock(status);
+        self.reachabilityStatusBlock(self.reachabilityStatus);
     }
 }
 
@@ -593,6 +585,18 @@ completeUploadBlock:(void (^)(TMOHTTPResult *result, NSError *error))argBlock {
             argCallback(self.reachabilityStatus);
         }
     });
+}
+
+- (TMOReachabilityStatus)reachabilityStatus {
+    if (_fetcherReachability.isReachable) {
+        if (_fetcherReachability.isReachableViaWiFi) {
+            return TMOReachabilityStatusWiFi;
+        }
+        else if (_fetcherReachability.isReachableViaWWAN) {
+            return TMOReachabilityStatusWWAN;
+        }
+    }
+    return TMOReachabilityStatusNoNetWork;
 }
 
 #pragma mark -

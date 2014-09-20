@@ -74,7 +74,7 @@ typedef enum {
 /**
  *  获取网络状态
  */
-@property (nonatomic) TMOReachabilityStatus reachabilityStatus;
+@property (nonatomic, readonly) TMOReachabilityStatus reachabilityStatus;
 
 /**
  *  判断当前网络是否可用

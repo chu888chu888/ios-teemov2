@@ -8,6 +8,7 @@
 
 #import "TMOTableDataTableViewController.h"
 #import "TMOUIKitCore.h"
+#import <TMOTableView.h>
 
 @interface TMOTableDataTableViewController ()
 @property (strong, nonatomic) IBOutlet TMOTableView *tableView;

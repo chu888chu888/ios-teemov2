@@ -8,6 +8,7 @@
 
 #import "TMOTableDataViewController.h"
 #import "TMOUIKitCore.h"
+#import <TMOTableView.h>
 
 @interface TMOTableDataViewController ()<UITableViewDataSource, UITableViewDelegate>
 
