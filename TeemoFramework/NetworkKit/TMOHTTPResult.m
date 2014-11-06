@@ -37,6 +37,9 @@
 }
 
 - (id)JSONObj {
+    if (_data == nil) {
+        return nil;
+    }
     return [NSJSONSerialization JSONObjectWithData:_data options:NSJSONReadingAllowFragments error:nil];
 }
 
