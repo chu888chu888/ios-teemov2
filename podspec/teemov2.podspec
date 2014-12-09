@@ -2,7 +2,7 @@
 Pod::Spec.new do |s|
 
   s.name         = "teemov2"
-  s.version      = "0.0.1"
+  s.version      = "2.2.3"
   s.summary      = "TeemoV2 - The iOS framework that grows your app fast"
 
   s.description  = <<-DESC
@@ -21,7 +21,7 @@ Pod::Spec.new do |s|
 
   s.default_subspec = "Core"
 
-  s.source       = { :git => "https://github.com/duowan/teemov2.git", :tag => "0.0.1" }
+  s.source       = { :git => "https://github.com/duowan/teemov2.git", :tag => "2.2.3" }
 
   s.requires_arc = true
 
@@ -29,7 +29,7 @@ Pod::Spec.new do |s|
     ss.platform     = :ios, "5.0"
     ss.source_files = "TeemoFramework", "TeemoFramework/**/*.{h,m}"
     ss.preserve_paths = "TeemoFramework/**/*.{php}"
-    ss.dependency "gtm-http-fetcher", "~> 1.0.129"
+    ss.dependency "gtm-http-fetcher", "1.0.129"
     ss.dependency "Reachability", "~> 3.1.1"
     ss.dependency "MBProgressHUD", "~> 0.8"
     ss.dependency "Objective-LevelDB", "~> 2.0.6"
@@ -53,7 +53,7 @@ Pod::Spec.new do |s|
     ss.dependency "NimbusKit-AttributedLabel"
     ss.dependency "teemov2/Core"
   end
-  
+
   s.subspec 'TMOSecurity' do |ss|
     ss.platform     = :ios, "5.0"
     ss.source_files = "TeemoSubmodule/TMOSecurity/*.{h,m}"
