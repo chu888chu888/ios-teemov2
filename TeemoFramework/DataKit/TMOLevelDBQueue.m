@@ -54,6 +54,10 @@ static NSMutableDictionary *pool;
     return [self databaseWithIdentifier:@"default" directory:NSCachesDirectory];
 }
 
+- (void)dealloc {
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:UIApplicationDidEnterBackgroundNotification object:nil];
+}
+
 - (instancetype)init {
     NSAssert(NO, @"Should !not! use init method by yourself!");
     return nil;
@@ -65,9 +69,16 @@ static NSMutableDictionary *pool;
         _queue = dispatch_queue_create([[NSString stringWithFormat:@"kvdb.%@", self] UTF8String], NULL);
         self.connection = argConnection;
         [self setupCoder];
-        [NSThread detachNewThreadSelector:@selector(threadRemoveExpiredData) toTarget:self withObject:nil];
+        [[NSNotificationCenter defaultCenter] addObserver:self
+                                                 selector:@selector(handleApplicationDidEnterBackground:)
+                                                     name:UIApplicationDidEnterBackgroundNotification
+                                                   object:nil];
     }
     return self;
+}
+
+- (void)handleApplicationDidEnterBackground:(NSNotification *)sender {
+    [self threadRemoveExpiredData];
 }
 
 - (void)setupCoder {
@@ -103,7 +114,7 @@ static NSMutableDictionary *pool;
 }
 
 - (void)removeObjectForKey:(NSString *)argKey {
-    [NSThread detachNewThreadSelector:@selector(threadRemoveObject:) toTarget:self withObject:argKey];
+    [self threadRemoveObject:argKey];
 }
 
 - (void)objectForKey:(NSString *)argKey withBlock:(void (^)(id object))argBlock {
